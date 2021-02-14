@@ -76,6 +76,10 @@ THIRD_PARTY_APPS = [
 LOCAL_APPS = [
     "peter_lists.users.apps.UsersConfig",
     # Your stuff: custom apps go here
+    "peter_lists.books.apps.BooksConfig",
+    "peter_lists.LEGO.apps.LegoConfig",
+    "peter_lists.origami.apps.OrigamiConfig",
+    "peter_lists.recipes.apps.RecipesConfig",
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS

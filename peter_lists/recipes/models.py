@@ -1,3 +1,6 @@
 from django.db import models
+from model_utils.models import TimeStampedModel
 
-# Create your models here.
+
+class Recipe(TimeStampedModel):
+    name = models.CharField("Name of Recipe", max_length=255)

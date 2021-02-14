@@ -1,3 +1,6 @@
 from django.db import models
+from model_utils.models import TimeStampedModel
 
-# Create your models here.
+
+class Book(TimeStampedModel):
+    title = models.CharField("Title of Book", max_length=255)
