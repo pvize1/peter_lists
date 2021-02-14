@@ -1,5 +1,5 @@
 from django.contrib.auth.models import AbstractUser
-from django.db.models import CharField
+from django.db.models import CharField, TextField
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 
@@ -7,8 +7,10 @@ from django.utils.translation import gettext_lazy as _
 class User(AbstractUser):
     """Default user for Peter Lists."""
 
-    #: First and last name do not cover name patterns around the globe
     name = CharField(_("Name of User"), blank=True, max_length=255)
+    bio = TextField("User Bio", blank=True)
+
+    #: First and last name do not cover name patterns around the globe
     first_name = None  # type: ignore
     last_name = None  # type: ignore
 

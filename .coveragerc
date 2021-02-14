@@ -1,0 +1,5 @@
+[run]
+include = peter_lists/*
+omit = *migrations*, *tests*
+disable_warnings = already-imported
+plugins = django_coverage_plugin
