@@ -6,7 +6,7 @@ from django.urls import reverse
 
 class Book(TimeStampedModel):
     title = models.CharField("Title of Book", max_length=255)
-    slug = models.SlugField(null=False, unique=True, default="_")
+    slug = models.SlugField(unique=True)
 
     def __str__(self):
         return self.title
