@@ -7,8 +7,6 @@ import model_utils.fields
 
 class Migration(migrations.Migration):
 
-    replaces = [('books', '0001_initial'), ('books', '0002_book_slug'), ('books', '0003_auto_20210214_2030')]
-
     initial = True
 
     dependencies = [
