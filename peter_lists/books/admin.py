@@ -11,6 +11,3 @@ class BookAdmin(admin.ModelAdmin):
 
     def slug_title(self):
         return slugify(self.title)
-
-
-# admin.site.register(Book, BookAdmin)
