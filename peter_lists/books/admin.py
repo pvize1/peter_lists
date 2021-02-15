@@ -5,9 +5,9 @@ from .models import Book
 
 @admin.register(Book)
 class BookAdmin(admin.ModelAdmin):
-    list_display = ("title",)
-    search_fields = ["title"]
+    list_display = (
+        "title",
+        "author",
+    )
+    search_fields = ["title", "author"]
     prepopulated_fields = {"slug": ("title",)}
-
-    def slug_title(self):
-        return slugify(self.title)

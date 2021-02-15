@@ -10,8 +10,8 @@ class Books(TimeStampedModel):
 
 class Book(TimeStampedModel):
     title = models.CharField("Title of Book", max_length=255)
-    subtitle = models.CharField("Subtitle of Book", max_length=255)
-    author = models.CharField("Author(s) of Book", max_length=255)
+    subtitle = models.CharField("Subtitle of Book", max_length=255, blank=True)
+    author = models.CharField("Author(s) of Book", max_length=255, blank=True)
     description = models.TextField("Description", blank=True)
     slug = models.SlugField(unique=True, default="_", blank=False)
 
@@ -22,6 +22,6 @@ class Book(TimeStampedModel):
         return reverse("books_detail", kwargs={"slug": self.slug})
 
     def save(self, *args, **kwargs):  # new
-        if (not self.slug) or (self.slug=="_"):
+        if (not self.slug) or (self.slug == "_"):
             self.slug = slugify(self.title)
         return super().save(*args, **kwargs)
