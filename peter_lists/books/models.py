@@ -16,7 +16,7 @@ class Book(TimeStampedModel):
     author = models.CharField("Author(s) of Book", max_length=255, blank=True)
     description = models.TextField("Description", blank=True)
     isbn = models.CharField("ISBN Number", max_length=25, blank=True)
-    pages = models.IntegerField(default=0)
+    pages = models.IntegerField("No. of Pages", default=0)
     slug = models.SlugField(unique=True, default="_", blank=False)
 
     def __str__(self):

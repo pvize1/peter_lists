@@ -16,6 +16,7 @@ urlpatterns = [
     path("users/", include("peter_lists.users.urls", namespace="users")),
     path("accounts/", include("allauth.urls")),
     # Your stuff: custom urls includes go here
+    path("books/", include("peter_lists.books.urls")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 

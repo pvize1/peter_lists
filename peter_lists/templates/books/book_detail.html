@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}Books: {{ cheese.title }}{% endblock title %}
+
+{% block content %}
+
+<h2>{{ book.title }}</h2>
+{% if book.author %}
+  <p>{{ book.author }}</p>
+{% endif %}
+{% if book.description %}
+  <p>{{ book.description }}</p>
+{% endif %}
+
+{% endblock content %}
+
+
+
