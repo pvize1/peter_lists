@@ -4,15 +4,19 @@ from django.template.defaultfilters import slugify
 from django.urls import reverse
 
 
-class Books(TimeStampedModel):
-    pass
+class Author(TimeStampedModel):
+    name = models.CharField("Author name", max_length=255)
 
+class Publisher(TimeStampedModel):
+    name = models.CharField("Book Publisher", max_length=255)
 
 class Book(TimeStampedModel):
     title = models.CharField("Title of Book", max_length=255)
     subtitle = models.CharField("Subtitle of Book", max_length=255, blank=True)
     author = models.CharField("Author(s) of Book", max_length=255, blank=True)
     description = models.TextField("Description", blank=True)
+    isbn = models.CharField("ISBN Number", max_length=25, blank=True)
+    pages = models.IntegerField(default=0)
     slug = models.SlugField(unique=True, default="_", blank=False)
 
     def __str__(self):
