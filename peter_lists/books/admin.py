@@ -9,6 +9,7 @@ class BookAdmin(admin.ModelAdmin):
         "title",
         "author",
     )
+    ordering = ["title"]
     search_fields = ["title", "author"]
     prepopulated_fields = {"slug": ("title",)}
 
@@ -16,6 +17,7 @@ class BookAdmin(admin.ModelAdmin):
 @admin.register(Author)
 class AuthorAdmin(admin.ModelAdmin):
     list_display = ("name",)
+    ordering = ["name"]
 
 @admin.register(BookType)
 class BookTypeAdmin(admin.ModelAdmin):
@@ -25,3 +27,4 @@ class BookTypeAdmin(admin.ModelAdmin):
 @admin.register(Publisher)
 class PublisherAdmin(admin.ModelAdmin):
     list_display = ("name",)
+    ordering = ["name"]
