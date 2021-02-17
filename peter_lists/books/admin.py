@@ -20,6 +20,7 @@ class AuthorAdmin(admin.ModelAdmin):
 @admin.register(BookType)
 class BookTypeAdmin(admin.ModelAdmin):
     list_display = ("type",)
+    ordering = ["type"]
 
 @admin.register(Publisher)
 class PublisherAdmin(admin.ModelAdmin):
