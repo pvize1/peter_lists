@@ -4,13 +4,14 @@
 {% block content %}
 
 <h2>Book List</h2>
-  <ul>
-    {% for book in book_list %}
-      <li>
-        <a href="{% url 'books:detail' book.slug %}">{{ book.title }}</a>
-        <p>{{ book.author }}</p>
-      </li>
-    {% endfor %}
-  </ul>
+<table>
+  {% for book in book_list %}
+    <tr>
+      <td><a href="{% url 'books:detail' book.slug %}">{{ book.title }}</a></td>
+      <td>{{ book.subtitle }}</td>
+      <td>{{ book.author }}</td>
+    </tr>
+  {% endfor %}
+</table>
 
 {% endblock content %}

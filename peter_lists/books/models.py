@@ -5,7 +5,13 @@ from django.urls import reverse
 
 
 class Author(TimeStampedModel):
-    name = models.CharField("Author name", max_length=255)
+    name = models.CharField("Author Name", max_length=255)
+
+class BookType(TimeStampedModel):
+    type = models.CharField("Book Type", max_length=25)
+
+    def __str__(self):
+        return self.type
 
 class Publisher(TimeStampedModel):
     name = models.CharField("Book Publisher", max_length=255)
@@ -17,6 +23,7 @@ class Book(TimeStampedModel):
     description = models.TextField("Description", blank=True)
     isbn = models.CharField("ISBN Number", max_length=25, blank=True)
     pages = models.IntegerField("No. of Pages", default=0)
+    type = models.ForeignKey('BookType', on_delete=models.CASCADE, blank=True)
     slug = models.SlugField(unique=True, default="_", blank=False)
 
     def __str__(self):
