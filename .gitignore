@@ -224,6 +224,7 @@ ehthumbs_vista.db
 
 # Dump file
 *.stackdump
+books.json
 
 # Folder config file
 Desktop.ini
