@@ -3,12 +3,22 @@
 
 {% block content %}
 
-<h2>{{ book.title }}</h2>
+<h2>Book Title : {{ book.title }}</h2>
+{% if book.subtitle %}
+  <p>Sub-Title : {{ book.subtitle }}</p>
+{% endif %}
 {% if book.author %}
-  <p>{{ book.author }}</p>
+  <p>Author : {{ book.author }}</p>
 {% endif %}
 {% if book.description %}
+  <p>Description</p>
   <p>{{ book.description }}</p>
+{% endif %}
+{% if book.isbn %}
+  <p>ISBN No. : {{ book.isbn }}</p>
+{% endif %}
+{% if book.type %}
+  <p>Book Type : {{ book.type }}</p>
 {% endif %}
 
 {% endblock content %}

@@ -9,9 +9,11 @@ class BookAdmin(admin.ModelAdmin):
     list_display = (
         "title",
         "author",
+        "type",
+        "status",
     )
-    ordering = ["title"]
-    search_fields = ["title", "author"]
+    ordering = ["type", "status", "title"]
+    search_fields = ["type__type", "status", "title", "author__name"]
     prepopulated_fields = {"slug": ("title",)}
 
 

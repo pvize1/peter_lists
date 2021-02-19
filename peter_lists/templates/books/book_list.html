@@ -10,6 +10,7 @@
       <td><a href="{% url 'books:detail' book.slug %}">{{ book.title }}</a></td>
       <td>{{ book.subtitle }}</td>
       <td>{{ book.author }}</td>
+      <td>{{ book.type }}</td>
     </tr>
   {% endfor %}
 </table>
