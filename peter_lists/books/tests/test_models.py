@@ -1,4 +1,8 @@
 import pytest
+
+from django.template.defaultfilters import slugify
+from .. import views
+
 from peter_lists.books.tests.factories import (
     BookFactory,
     AuthorFactory,
@@ -31,3 +35,8 @@ def test_book__str__():
     book = BookFactory()
     assert book.__str__() == book.title
     assert str(book) == book.title
+
+
+def test_book_save():
+    book = BookFactory(slug="_")
+    assert book.slug == slugify(book.title)
