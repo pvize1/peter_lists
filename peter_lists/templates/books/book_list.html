@@ -4,15 +4,16 @@
 {% block content %}
 
 <h2>Book List</h2>
-<table>
+<ul>
   {% for book in book_list %}
-    <tr>
-      <td><a href="{% url 'books:detail' book.slug %}">{{ book.title }}</a></td>
-      <td>{{ book.subtitle }}</td>
-      <td>{{ book.author }}</td>
-      <td>{{ book.type }}</td>
-    </tr>
+    <li><a href="{% url 'books:detail' book.slug %}">{{ book.title }}</a></li>
   {% endfor %}
-</table>
+</ul>
+
+<hr/>
+<p>Don't see a cheese listed here?</p>
+<p>
+  <a class="btn btn-primary" href="{% url 'books:add' %}" role="button">Add Book</a>
+</p>
 
 {% endblock content %}
