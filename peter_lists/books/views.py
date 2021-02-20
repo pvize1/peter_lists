@@ -23,7 +23,7 @@ class BookDetailView(DetailView):
     template_name = "books/book_detail.html"
 
 
-class BookCreateView(CreateView):
+class BookCreateView(LoginRequiredMixin, CreateView):
     model = Book
     template_name = "books/book_form.html"
     fields = [

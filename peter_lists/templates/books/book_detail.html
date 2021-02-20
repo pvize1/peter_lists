@@ -3,22 +3,30 @@
 
 {% block content %}
 
-<h2>Book Title : {{ book.title }}</h2>
+<h2>{{ book.title }}</h2>
 {% if book.subtitle %}
-  <p>Sub-Title : {{ book.subtitle }}</p>
+  <p>{{ book.subtitle }}</p>
 {% endif %}
 {% if book.author %}
-  <p>Author : {{ book.author }}</p>
+  <p>{{ book.author }}</p>
 {% endif %}
 {% if book.description %}
-  <p>Description</p>
   <p>{{ book.description }}</p>
 {% endif %}
 {% if book.isbn %}
-  <p>ISBN No. : {{ book.isbn }}</p>
+  <p>{{ book.isbn }}</p>
+{% endif %}
+{% if book.publisher %}
+  <p>{{ book.publisher }}</p>
 {% endif %}
 {% if book.type %}
-  <p>Book Type : {{ book.type }}</p>
+  <p>{{ book.type }}</p>
+{% endif %}
+{% if book.form %}
+  <p>{{ book.get_form_display }}</p>
+{% endif %}
+{% if book.status %}
+  <p>{{ book.get_status_display }}</p>
 {% endif %}
 
 {% endblock content %}
