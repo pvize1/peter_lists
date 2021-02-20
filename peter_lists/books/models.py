@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.db import models
 from model_utils.models import TimeStampedModel
 from django.utils.translation import gettext_lazy as _
@@ -66,6 +67,9 @@ class Book(TimeStampedModel):
         default=StatusChoices.UNKOWN,
     )
     slug = models.SlugField(unique=True, default="_", blank=False)
+    creator = models.ForeignKey(
+        settings.AUTH_USER_MODEL, null=True, on_delete=models.SET_NULL
+    )
 
     def __str__(self):
         return self.title
