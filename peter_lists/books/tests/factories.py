@@ -1,7 +1,10 @@
+import pytest
+
 from django.template.defaultfilters import slugify
 
 from factory.django import DjangoModelFactory
 from factory import Faker, fuzzy, LazyAttribute, SubFactory
+from peter_lists.users.tests.factories import UserFactory
 
 from ..models import Book, Author, Publisher, BookType
 
@@ -40,3 +43,9 @@ class BookFactory(DjangoModelFactory):
     pages = 99
     type = SubFactory(BookTypeFactory)
     slug = LazyAttribute(lambda obj: slugify(obj.title))
+    creator = SubFactory(UserFactory)
+
+
+@pytest.fixture
+def book():
+    return BookFactory()

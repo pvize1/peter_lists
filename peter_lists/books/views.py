@@ -36,6 +36,7 @@ class BookCreateView(LoginRequiredMixin, CreateView):
         "form",
         "status",
     ]
+    action = "Add"
 
     def form_valid(self, form):
         form.instance.creator = self.request.user
@@ -45,7 +46,7 @@ class BookCreateView(LoginRequiredMixin, CreateView):
 class BookUpdateView(LoginRequiredMixin, UpdateView):
     model = Book
     template_name = "books/book_form.html"
-    fields = {
+    fields = [
         "title",
         "subtitle",
         "description",
@@ -54,5 +55,5 @@ class BookUpdateView(LoginRequiredMixin, UpdateView):
         "type",
         "form",
         "status",
-    }
+    ]
     action = "Update"

@@ -5,5 +5,6 @@ app_name = "books"
 urlpatterns = [
     path(route="", view=views.BookListView.as_view(), name="list"),
     path(route="add/", view=views.BookCreateView.as_view(), name="add"),
+    path(route="update/<slug:slug>/", view=views.BookUpdateView.as_view(), name="update"),
     path(route="<slug:slug>/", view=views.BookDetailView.as_view(), name="detail"),
 ]

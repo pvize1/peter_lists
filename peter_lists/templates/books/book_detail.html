@@ -29,6 +29,19 @@
   <p>{{ book.get_status_display }}</p>
 {% endif %}
 
+<hr/>
+
+{% if book.creator %}
+  <h3>Submitted by <a href="{{ book.creator.get_absolute_url }}">{{ book.creator.username }}</a></h3>
+    {% if book.creator.name %}
+        <p>{{ book.creator.name }}</p>
+    {% endif %}
+{% endif %}
+
+<p>
+  <a class="btn btn-primary" href="{% url 'books:update' book.slug %}" role="button">Update</a>
+</p>
+
 {% endblock content %}
 
 
