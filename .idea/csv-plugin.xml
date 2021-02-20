@@ -73,6 +73,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\peter_lists\templates\books\publisher_list.html">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
       </map>
     </option>
   </component>

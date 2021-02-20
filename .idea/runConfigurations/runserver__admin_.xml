@@ -1,5 +1,5 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="runserver" type="Python.DjangoServer" factoryName="Django server" singleton="true">
+  <configuration default="false" name="runserver (admin)" type="Python.DjangoServer" factoryName="Django server">
     <module name="peter_lists" />
     <option name="INTERPRETER_OPTIONS" value="" />
     <option name="PARENT_ENVS" value="true" />
@@ -13,10 +13,9 @@
     <option name="ADD_CONTENT_ROOTS" value="true" />
     <option name="ADD_SOURCE_ROOTS" value="true" />
     <option name="launchJavascriptDebuger" value="false" />
-    <option name="port" value="8000" />
-    <option name="host" value="127.0.0.1" />
+    <option name="host" value="" />
     <option name="additionalOptions" value="" />
-    <option name="browserUrl" value="" />
+    <option name="browserUrl" value="http://127.0.0.1:8000/admin/" />
     <option name="runTestServer" value="false" />
     <option name="runNoReload" value="false" />
     <option name="useCustomRunCommand" value="false" />

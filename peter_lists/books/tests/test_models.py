@@ -40,3 +40,9 @@ def test_book__str__():
 def test_book_save():
     book = BookFactory(slug="_")
     assert book.slug == slugify(book.title)
+
+
+def test_get_absolute_url():
+    book = BookFactory()
+    url = book.get_absolute_url()
+    assert url == f'/books/{book.slug}/'
