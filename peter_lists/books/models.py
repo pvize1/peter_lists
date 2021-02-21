@@ -34,6 +34,7 @@ class Book(TimeStampedModel):
         TO_READ = "TR", _("To read")
         NEXT = "NT", _("Next")
         BROWSING = "BG", _("Browsing")
+        REFERENCE = "RE", _("Reference")
         GIVEN_UP = "GU", _("Given-up")
         WISH_LIST = "WL", _("Wishlist")
         INACTIVE = "IA", _("Inactive")
@@ -44,6 +45,7 @@ class Book(TimeStampedModel):
         HARDBACK = "HB", _("Hardback")
         KINDLE = "KI", _("Kindle")
         MAGAZINE = "MA", _("Magazine")
+        WISH_LIST = "WL", _("Wishlist")
         OTHER = "OT", _("Other")
 
     title = models.CharField("Book Title", max_length=255)
@@ -70,6 +72,8 @@ class Book(TimeStampedModel):
     creator = models.ForeignKey(
         settings.AUTH_USER_MODEL, null=True, on_delete=models.SET_NULL
     )
+    rating = models.IntegerField("Rating (1-10)", default=0)
+    pct_read = models.IntegerField("Pct% Read", default=0)
 
     def __str__(self):
         return self.title
