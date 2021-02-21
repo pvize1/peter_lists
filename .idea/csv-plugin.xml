@@ -52,6 +52,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\peter_lists\books\tests\test_urls.py">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\peter_lists\books\tests\test_views.py">
           <value>
             <Attribute>
