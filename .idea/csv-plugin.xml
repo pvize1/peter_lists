@@ -59,6 +59,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\peter_lists\books\tests\test_views_OLD.py">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\peter_lists\books\urls.py">
           <value>
             <Attribute>
@@ -67,6 +74,13 @@
           </value>
         </entry>
         <entry key="\peter_lists\books\views.py">
+          <value>
+            <Attribute>
+              <option name="separator" value=":" />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\peter_lists\conftest.py">
           <value>
             <Attribute>
               <option name="separator" value=":" />

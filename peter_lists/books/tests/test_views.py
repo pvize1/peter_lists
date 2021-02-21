@@ -4,7 +4,7 @@ from django.test import TestCase
 from django.urls import reverse
 
 from .factories import UserFactory
-from .factories import BookFactory
+from .factories import BookFactory, AuthorFactory, PublisherFactory, BookTypeFactory
 from ..models import Book
 from ..views import BookListView, BookDetailView
 
@@ -45,17 +45,27 @@ class SimpleTest(TestCase):
         self.assertContains(response, book.author.name)
         self.assertContains(response, book.publisher.name)
 
+    def test_book_create_form_valid(self):
+        user = UserFactory()
+        self.client.force_login(user)
+        author = AuthorFactory()
+        publisher = PublisherFactory()
+        booktype = BookTypeFactory()
+        form_data = {
+            "title": "Good Book",
+            "subtitle": "Next line",
+            "description": "A really good book",
+            "author": author.id,
+            "publisher": publisher.id,
+            "type": booktype.id,
+            "form": "OT",
+            "status": "UK",
+        }
+        url = reverse("books:add")
+        response = self.client.post(url, form_data)
+        assert response.status_code == 302
 
-def test_book_create_form_valid(client, user):
-    client.force_login(user)
-    form_data = {
-        "title": "Good Book",
-        "description": "A Really Good Book",
-    }
-    url = reverse("books:add")
-    response = client.post(url, form_data)
-    assert response.status_code == 302
-
-    book = Book.objects.get(title="Good Book")
-    assert book.description == "A Really Good Book"
-    assert book.creator == user
+        book = Book.objects.get(title="Good Book")
+        assert book.subtitle == "Next line"
+        assert book.description == "A really good book"
+        assert book.creator == user

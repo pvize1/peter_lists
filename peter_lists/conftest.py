@@ -1,5 +1,7 @@
 import pytest
 
+from django.test import RequestFactory
+
 from peter_lists.users.models import User
 from peter_lists.users.tests.factories import UserFactory
 
@@ -12,3 +14,8 @@ def media_storage(settings, tmpdir):
 @pytest.fixture
 def user() -> User:
     return UserFactory()
+
+
+@pytest.fixture
+def request_factory() -> RequestFactory:
+    return RequestFactory()
