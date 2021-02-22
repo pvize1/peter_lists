@@ -4,14 +4,37 @@
 {% block content %}
 
 <h2>Book List</h2>
-<ul>
-  {% for book in book_list %}
-    <li><a href="{% url 'books:detail' book.slug %}">{{ book.title }}</a></li>
-  {% endfor %}
-</ul>
 
+<div class="container">
+  <div class="row">
+    <div class="col-sm">
+      <b>Title</b>
+    </div>
+    <div class="col-sm">
+      <b>Author</b>
+    </div>
+    <div class="col-sm">
+      <b>Description</b>
+    </div>
+  </div>
+  {% for book in book_list %}
+    <div class="row">
+      <div class="col-sm">
+        <a href="{% url 'books:detail' book.slug %}">{{ book.title }}</a>
+      </div>
+      <div class="col-sm">
+        {{ book.author }}
+      </div>
+      <div class="col-sm">
+        {{ book.type }}
+      </div>
+    </div>
+  {% endfor %}
+</div>
+
+<br/>
 <hr/>
-<p>Don't see a cheese listed here?</p>
+<p>Don't see a book listed here?</p>
 <p>
   <a class="btn btn-primary" href="{% url 'books:add' %}" role="button">Add Book</a>
 </p>
