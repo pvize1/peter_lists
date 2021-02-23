@@ -3,40 +3,53 @@
 
 {% block content %}
 
-<h2>Book List</h2>
 
-<div class="container">
-  <div class="row">
-    <div class="col-sm">
-      <b>Title</b>
+  <div class="container">
+    <div class="jumbotron">
+      <h2>Book List</h2>
     </div>
-    <div class="col-sm">
-      <b>Author</b>
-    </div>
-    <div class="col-sm">
-      <b>Description</b>
-    </div>
-  </div>
-  {% for book in book_list %}
+    <br/>
+
     <div class="row">
       <div class="col-sm">
-        <a href="{% url 'books:detail' book.slug %}">{{ book.title }}</a>
+        <b>Title</b>
       </div>
       <div class="col-sm">
-        {{ book.author }}
+        <b>Author</b>
       </div>
       <div class="col-sm">
-        {{ book.type }}
+        <b>Book Type</b>
+      </div>
+      <div class="col-sm">
+        <b>Description</b>
       </div>
     </div>
-  {% endfor %}
-</div>
+    {% for book in book_list %}
+      <div class="row">
+        <div class="col-sm">
+          <a href="{% url 'books:detail' book.slug %}">{{ book.title }}</a>
+        </div>
+        <div class="col-sm">
+          {{ book.author }}
+        </div>
+        <div class="col-sm">
+          {{ book.type }}
+        </div>
+        <div class="col-sm">
+          {{ book.description }}
+        </div>
+      </div>
+    {% endfor %}
 
-<br/>
-<hr/>
-<p>Don't see a book listed here?</p>
-<p>
-  <a class="btn btn-primary" href="{% url 'books:add' %}" role="button">Add Book</a>
-</p>
+    <br/>
+    <hr/>
 
+    <div class="jumbotron">
+      <p>Don't see a book listed here?</p>
+      <p>
+        <a class="btn btn-primary" href="{% url 'books:add' %}" role="button">Add Book</a>
+      </p>
+    </div>
+
+  </div>
 {% endblock content %}

@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.views.generic import ListView
 
 # Create your views here.
-class OrigamiListView(ListView):
-    #model = Origami
+class LegoListView(ListView):
+    #model = Lego
     #template_name = "books/book_list.html"
     pass

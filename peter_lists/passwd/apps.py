@@ -2,4 +2,4 @@ from django.apps import AppConfig
 
 
 class PasswdConfig(AppConfig):
-    name = 'passwd'
+    name = 'peter_lists.passwd'

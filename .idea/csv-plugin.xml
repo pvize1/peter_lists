@@ -17,6 +17,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\config\settings\base.py">
+          <value>
+            <Attribute>
+              <option name="separator" value=":" />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\config\urls.py">
           <value>
             <Attribute>
@@ -101,6 +108,20 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\peter_lists\passwd\urls.py">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\peter_lists\projects\urls.py">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\peter_lists\templates\books\book_list.html">
           <value>
             <Attribute>
@@ -112,6 +133,13 @@
           <value>
             <Attribute>
               <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\peter_lists\templates\passwd\passwd_home.html">
+          <value>
+            <Attribute>
+              <option name="separator" value=":" />
             </Attribute>
           </value>
         </entry>

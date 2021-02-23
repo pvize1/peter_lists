@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block content %}
+
+  <div class="container">
+    <div class="jumbotron">
+      <h2>Random number generator</h2>
+    </div>
+
+    <form action="{% url "passwd:display" %}">
+      <div class="row">
+        <div class="col-lg-3 col-md-6 col-sm-8 col-xs-12">
+          <p>Length</p>
+        </div>
+        <div class="col-lg-2 col-md-4 col-sm-4 col-xs-4">
+          <select name="length">
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12" selected="selected">12</option>
+            <option value="13">13</option>
+            <option value="14">14</option>
+            <option value="15">15</option>
+            <option value="16">16</option>
+          </select>
+        </div>
+      </div>
+      </br>
+      <div class="row">
+        <div class="col-lg-3 col-md-6 col-sm-8 col-xs-12">
+          <p>Uppercase</p>
+        </div>
+        <div class="col-lg-2 col-md-4 col-sm-4 col-xs-4">
+          <input type="checkbox" name="uppercase">
+        </div>
+      </div>
+      </br>
+      <div class="row">
+        <div class="col-lg-3 col-md-6 col-sm-8 col-xs-12">
+          <p>Special Characters</p>
+        </div>
+        <div class="col-lg-2 col-md-4 col-sm-4 col-xs-4">
+          <input type="checkbox" name="special">
+        </div>
+      </div>
+      </br>
+      <div class="row">
+        <div class="col-lg-3 col-md-6 col-sm-8 col-xs-12">
+          <p>Numbers</p>
+        </div>
+        <div class="col-lg-2 col-md-4 col-sm-4 col-xs-4">
+          <input type="checkbox" name="numbers">
+        </div>
+      </div>
+
+      </br>
+      </br>
+      <input type="submit" value="Generate Password" class="btn btn-primary">
+    </form>
+  </div>
+
+{% endblock content %}
