@@ -6,9 +6,11 @@
       <h2>Password Generated</h2>
     </div>
 
-    {{ password }}
+    <h1>{{ password }}</h1>
 
+    <br/>
+    <br/>
+    <a href="{% url "passwd:home" %}" class="btn btn-primary">back</a>
   </div>
-
 
 {% endblock content %}
