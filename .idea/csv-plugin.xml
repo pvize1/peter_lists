@@ -157,6 +157,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\peter_lists\templates\projects\home.html">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
       </map>
     </option>
   </component>

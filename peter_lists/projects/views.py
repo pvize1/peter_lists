@@ -6,4 +6,4 @@ def ProjHomeView(request):
 
 
 def ProjAdminView(request):
-    pass
+    return render(request, "projects/home.html")
