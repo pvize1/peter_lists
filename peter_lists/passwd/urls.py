@@ -3,6 +3,6 @@ from . import views
 
 app_name = "passwd"
 urlpatterns = [
-    path("", views.home, name="home"),
-    path("display/", views.display, name="display"),
+    path("", views.PasswdHome, name="home"),
+    path("display/", views.PasswdDisplay, name="display"),
 ]

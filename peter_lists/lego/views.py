@@ -1,8 +1,12 @@
 from django.shortcuts import render
 from django.views.generic import ListView
+from.models import LegoSet
 
 # Create your views here.
+def LegoHome(request):
+    return render(request, "lego/lego_home.html")
+
 class LegoListView(ListView):
-    #model = Lego
-    #template_name = "books/book_list.html"
-    pass
+    model = LegoSet
+    template_name = "lego/lego_list.html"
+

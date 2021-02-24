@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}LEGO Set List{% endblock title %}
+
+{% block content %}
+
+
+  <div class="container">
+    <div class="jumbotron">
+      <h2 class="text-center">LEGO Set List</h2>
+    </div>
+    <br/>
+
+    <div class="row">
+      <div class="col-sm">
+        <b>Title</b>
+      </div>
+
+    </div>
+    {% for lego in lego_sets %}
+      <div class="row">
+        <div class="col-sm">
+          <a href="{% url 'lego:detail' lego.slug %}">{{ lego.title }}</a>
+        </div>
+
+      </div>
+    {% endfor %}
+
+    <br/>
+    <hr/>
+
+    <br/>
+    <p>Don't see a LEGO set listed here?</p>
+    <p>
+      <a class="btn btn-primary" href="{% url 'lego:add' %}" role="button">Add LEGO Set</a>
+    </p>
+
+
+  </div>
+{% endblock content %}
