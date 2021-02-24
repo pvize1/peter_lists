@@ -129,6 +129,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\peter_lists\projects\views.py">
+          <value>
+            <Attribute>
+              <option name="separator" value=":" />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\peter_lists\templates\books\book_list.html">
           <value>
             <Attribute>

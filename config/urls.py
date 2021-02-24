@@ -5,8 +5,11 @@ from django.urls import include, path
 from django.views import defaults as default_views
 from django.views.generic import TemplateView
 
+from peter_lists.projects import views as proj_view
+
 urlpatterns = [
-    path("", TemplateView.as_view(template_name="projects/home.html"), name="home"),
+    #path("", TemplateView.as_view(template_name="projects/home.html"), name="home"),
+    path(route="", view=proj_view.ProjHomeView, name="home"),
     # Django Admin, use {% url 'admin:index' %}
     path(settings.ADMIN_URL, admin.site.urls),
     # User management
@@ -17,7 +20,7 @@ urlpatterns = [
     path("lego/", include("peter_lists.lego.urls"), name="lego"),
     path("origami/", include("peter_lists.origami.urls"), name="origami"),
     path("passwd/", include("peter_lists.passwd.urls"), name="passwd"),
-    #path("projects/", include("peter_lists.projects.urls"), name="projects"),
+    path("projects/", include("peter_lists.projects.urls"), name="projects"),
     path("recipes/", include("peter_lists.recipes.urls"), name="recipes"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
