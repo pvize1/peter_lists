@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}Recipes: {{ recipe.title }}{% endblock title %}
+
+{% block content %}
+
+  <h2>{{ recipe.title }}</h2>
+  {% if recipe.description %}
+    <p>{{ recipe.description }}</p>
+  {% endif %}
+
+  <hr/>
+
+  <p>
+    <a class="btn btn-primary" href="{% url 'books:update' book.slug %}" role="button">Update</a>
+  </p>
+
+{% endblock content %}
+
+
+

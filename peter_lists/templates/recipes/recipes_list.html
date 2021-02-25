@@ -1,11 +1,11 @@
 {% extends "base.html" %}
-{% block title %}LEGO Set List{% endblock title %}
+{% block title %}Recipe List{% endblock title %}
 
 {% block content %}
 
   <div class="container">
     <div class="jumbotron">
-      <h2 class="text-center">LEGO Set List</h2>
+      <h2 class="text-center">Recipe List</h2>
     </div>
     <br/>
 
@@ -15,10 +15,10 @@
       </div>
 
     </div>
-    {% for lego in lego_sets %}
+    {% for recipe in recipes %}
       <div class="row">
         <div class="col-sm">
-          <a href="{% url 'lego:detail' lego.slug %}">{{ lego.title }}</a>
+          <a href="{% url 'recipe:detail' recipe.slug %}">{{ recipe.title }}</a>
         </div>
 
       </div>
@@ -28,9 +28,9 @@
     <hr/>
 
     <br/>
-    <p>Don't see a LEGO set listed here?</p>
+    <p>Don't see a Recipe listed here?</p>
     <p>
-      <a class="btn btn-primary" href="{% url 'lego:add' %}" role="button">Add LEGO Set</a>
+      <a class="btn btn-primary" href="{% url 'books:add' %}" role="button">Add Recipe</a>
     </p>
 
 

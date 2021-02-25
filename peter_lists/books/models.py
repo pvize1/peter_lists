@@ -7,7 +7,7 @@ from django.urls import reverse
 
 
 class Author(TimeStampedModel):
-    name = models.CharField("Author Name", max_length=255)
+    name = models.CharField("Author Name", max_length=250)
 
     def __str__(self):
         return self.name
@@ -21,7 +21,7 @@ class BookType(TimeStampedModel):
 
 
 class Publisher(TimeStampedModel):
-    name = models.CharField("Book Publisher", max_length=255)
+    name = models.CharField("Book Publisher", max_length=250)
 
     def __str__(self):
         return self.name
@@ -48,8 +48,8 @@ class Book(TimeStampedModel):
         WISH_LIST = "WL", _("Wishlist")
         OTHER = "OT", _("Other")
 
-    title = models.CharField("Book Title", max_length=255)
-    subtitle = models.CharField("Subtitle", max_length=255, blank=True)
+    title = models.CharField("Book Title", max_length=250)
+    subtitle = models.CharField("Subtitle", max_length=250, blank=True)
     author = models.ForeignKey("Author", on_delete=models.CASCADE)
     description = models.TextField("Description", blank=True)
     isbn = models.CharField("ISBN Number", max_length=25, blank=True)

@@ -3,5 +3,6 @@ from . import views
 
 app_name = "recipes"
 urlpatterns = [
+    path(route="", view=views.RecipeHome, name="home"),
     path(route="", view=views.RecipeListView.as_view(), name="list"),
 ]
