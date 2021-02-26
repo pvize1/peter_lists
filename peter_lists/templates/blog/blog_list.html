@@ -3,17 +3,16 @@
 
 {% block content %}
 
-
   <div class="container">
     <div class="jumbotron">
-      <h2 class="text-center">Blog List</h2>
+      <h2 class="text-center">Total Blog List</h2>
     </div>
     <br/>
-
 
     {% for blog in blog_list %}
       <h2>{{ blog.title }}</h2>
       <p>{{ blog.description }}</p>
+      <p><i>{{ blog.tag }}</i></p>
       <p>{{ blog.date }}</p>
       <br/>
     {% endfor %}

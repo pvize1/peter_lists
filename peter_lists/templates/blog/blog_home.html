@@ -1,12 +1,28 @@
 {% extends "base.html" %}
+{% block title %}Blog{% endblock title %}
+
 {% block content %}
 
   <div class="container">
     <div class="jumbotron">
-      <h2 class="text-center">Blog Homepage</h2>
+      <h1 class="text-center">My Diary Blog</h1>
     </div>
-  </div>
+    <h3>Latest 3 blog entries</h3>
+    <br/>
 
-  <a href="{% url 'blog:list' %}">List of blog entries</a>
+    {% for blog in blogs %}
+      <h2>{{ blog.title }}</h2>
+      <p>{{ blog.description }}</p>
+      <p><i>{{ blog.tag }}</i></p>
+      <p>{{ blog.date }}</p>
+      <br/>
+    {% endfor %}
+
+    <br/>
+    <hr/>
+    <br/>
+    <p><a class="btn btn-primary" href="{% url 'blog:list' %}" role="button">List of all blog entries</a>
+    <span><a class="btn btn-primary" href="{% url 'books:add' %}" role="button">Add Blog entry</a></span></p>
+  </div>
 
 {% endblock content %}

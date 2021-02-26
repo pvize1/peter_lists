@@ -5,7 +5,8 @@ from .models import Blog
 
 # Create your views here.
 def BlogHome(request):
-    return render(request, "blog/blog_home.html")
+    blogs = Blog.objects.order_by("-date")[:3]
+    return render(request, "blog/blog_home.html", {'blogs': blogs})
 
 
 class BlogListView(ListView):
