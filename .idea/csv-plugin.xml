@@ -38,6 +38,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\peter_lists\blog\views.py">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\peter_lists\books\admin.py">
           <value>
             <Attribute>

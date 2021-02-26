@@ -8,14 +8,14 @@ from django.views.generic import TemplateView
 from peter_lists.projects import views as proj_view
 
 urlpatterns = [
-    #path("", TemplateView.as_view(template_name="projects/home.html"), name="home"),
-    path(route="", view=proj_view.ProjHomeView, name="home"),
     # Django Admin, use {% url 'admin:index' %}
     path(settings.ADMIN_URL, admin.site.urls),
     # User management
     path("users/", include("peter_lists.users.urls", namespace="users")),
     path("accounts/", include("allauth.urls")),
     # Your stuff: custom urls includes go here
+    path(route="", view=proj_view.ProjHomeView, name="home"),
+    path("blog/", include("peter_lists.blog.urls"), name="blog"),
     path("books/", include("peter_lists.books.urls"), name="books"),
     path("lego/", include("peter_lists.lego.urls"), name="lego"),
     path("origami/", include("peter_lists.origami.urls"), name="origami"),

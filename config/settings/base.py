@@ -76,6 +76,7 @@ THIRD_PARTY_APPS = [
 LOCAL_APPS = [
     "peter_lists.users.apps.UsersConfig",
     # Your stuff: custom apps go here
+    "peter_lists.blog.apps.BlogConfig",
     "peter_lists.books.apps.BooksConfig",
     "peter_lists.lego.apps.LegoConfig",
     "peter_lists.origami.apps.OrigamiConfig",
