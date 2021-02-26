@@ -9,10 +9,7 @@ class role_inline(admin.TabularInline):
 
 @admin.register(Recipe)
 class RecipeAdmin(admin.ModelAdmin):
-    list_display = [
-        "title",
-        "description",
-    ]
+    list_display = ["title", "description"]
     prepopulated_fields = {"slug": ("title",)}
     inlines = [role_inline]
 
@@ -39,3 +36,5 @@ class IngredientListAdmin(admin.ModelAdmin):
         "uom",
     ]
     ordering = ["recipe"]
+    list_filter = ["recipe", "ingredient"]
+    search_fields = ["recipe", "ingredient"]

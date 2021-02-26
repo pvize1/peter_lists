@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}Blog List{% endblock title %}
+
+{% block content %}
+
+
+  <div class="container">
+    <div class="jumbotron">
+      <h2 class="text-center">Blog List</h2>
+    </div>
+    <br/>
+
+
+    {% for blog in blog_list %}
+      <h2>{{ blog.title }}</h2>
+      <p>{{ blog.description }}</p>
+      <p>{{ blog.date }}</p>
+      <br/>
+    {% endfor %}
+
+    <br/>
+    <hr/>
+
+    <br/>
+    <p>Want to add a new blog entry?</p>
+    <p><a class="btn btn-primary" href="{% url 'books:add' %}" role="button">Add Blog entry</a></p>
+  </div>
+{% endblock content %}

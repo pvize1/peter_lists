@@ -19,7 +19,7 @@
     {% for lego in lego_sets %}
       <div class="row">
         <div class="col-sm">
-          <a href="{% url 'lego:detail' lego.slug %}">{{ lego.title }}</a>
+          <a href="{% url 'books:detail' lego.slug %}">{{ lego.title }}</a>
         </div>
 
       </div>
@@ -31,7 +31,7 @@
     <br/>
     <p>Don't see a LEGO set listed here?</p>
     <p>
-      <a class="btn btn-primary" href="{% url 'lego:add' %}" role="button">Add LEGO Set</a>
+      <a class="btn btn-primary" href="{% url 'books:add' %}" role="button">Add LEGO Set</a>
     </p>
 
 

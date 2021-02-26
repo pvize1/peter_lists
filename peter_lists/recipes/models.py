@@ -66,17 +66,17 @@ class IngredientList(TimeStampedModel):
 class Recipe(TimeStampedModel):
     title = models.CharField("Name of Recipe", max_length=250)
     description = models.TextField("Description", blank=True)
+    method = models.TextField("Method", blank=True)
     ingredients = models.ManyToManyField(
         Ingredient,
         through=IngredientList,
         related_name="ingredient",
     )
+    tag = models.CharField("Tag", max_length=100, blank=True, default="none, ")
     slug = models.SlugField(unique=True, default="_", blank=False)
 
     class Meta:
-        ordering = [
-            "title",
-        ]
+        ordering = ["title"]
 
     def __str__(self):
         return self.title
