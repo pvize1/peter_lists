@@ -75,6 +75,9 @@ class Recipe(TimeStampedModel):
         related_name="ingredient",
     )
     tag = models.CharField("Tag", max_length=100, blank=True, default="none, ")
+    serves = models.IntegerField("Serves", default=0)
+    prep = models.DecimalField("Prep (hrs)", max_digits=5, decimal_places=2, default=0)
+    cook = models.DecimalField("Cook (hrs)", max_digits=5, decimal_places=2, default=0)
     slug = models.SlugField(unique=True, default="_", blank=False)
 
     class Meta:
