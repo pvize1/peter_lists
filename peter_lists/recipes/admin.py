@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Foodstuff, Ingredient, IngredientList, Recipe
+from .models import Foodstuff, Ingredient, IngredientList, Recipe, CookBookList
 
 
 class role_inline(admin.TabularInline):
@@ -22,7 +22,7 @@ class FoodstuffAdmin(admin.ModelAdmin):
 
 @admin.register(Ingredient)
 class IngredientAdmin(admin.ModelAdmin):
-    list_display = ["foodstuff", "form"]
+    list_display = ["name", "foodstuff", "form"]
     ordering = ["foodstuff__name"]
     inlines = [role_inline]
 
@@ -38,3 +38,8 @@ class IngredientListAdmin(admin.ModelAdmin):
     ordering = ["recipe"]
     list_filter = ["recipe", "ingredient"]
     search_fields = ["recipe", "ingredient"]
+
+
+@admin.register(CookBookList)
+class CookBookListAdmin(admin.ModelAdmin):
+    list_display = ["cookbook", "recipe"]

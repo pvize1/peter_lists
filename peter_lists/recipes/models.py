@@ -3,6 +3,7 @@ from model_utils.models import TimeStampedModel
 from django.template.defaultfilters import slugify
 from django.utils.translation import gettext_lazy as _
 from django.urls import reverse
+from ..books.models import Book
 
 
 class Foodstuff(TimeStampedModel):
@@ -25,6 +26,7 @@ class Ingredient(TimeStampedModel):
         SLICED = "SLC", _("Sliced")
         NONE = "NON", _("_")
 
+    name = models.CharField("Ingredient", max_length=250, blank=True, default="_")
     foodstuff = models.ForeignKey("Foodstuff", on_delete=models.CASCADE)
     form = models.CharField(
         "Form",
@@ -34,13 +36,13 @@ class Ingredient(TimeStampedModel):
     )
 
     def __str__(self):
-        return f"{self.foodstuff.name}, {self.get_form_display()}"
+        return self.name
 
 
 class IngredientList(TimeStampedModel):
     class UomChoices(models.TextChoices):
         GRAM = "GRM", _("Grammes")
-        MILLILITRE = "MLT", _("MilliLitres")
+        MILLILITRE = "MLT", _("Millilitres")
         LITRE = "LTR", _("Litres")
         UNIT = "UNT", _("Unit")
         TSP = "TSP", _("Tea Spoon")
@@ -88,3 +90,11 @@ class Recipe(TimeStampedModel):
         if (not self.slug) or (self.slug == "_"):
             self.slug = slugify(self.title)
         return super().save(*args, **kwargs)
+
+
+class CookBookList(TimeStampedModel):
+    cookbook = models.ForeignKey("books.Book", on_delete=models.CASCADE)
+    recipe = models.ForeignKey("Recipe", on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"{self.cookbook.title}; {self.recipe.title}"
