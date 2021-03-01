@@ -46,5 +46,5 @@ class IngredientListAdmin(admin.ModelAdmin):
 
 @admin.register(CookBookList)
 class CookBookListAdmin(admin.ModelAdmin):
-    list_display = ["cookbook", "recipe"]
+    list_display = ["cookbook", "recipe", "page", "url"]
     search_fields = ["cookbook", "recipe"]

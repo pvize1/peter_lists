@@ -98,6 +98,8 @@ class Recipe(TimeStampedModel):
 class CookBookList(TimeStampedModel):
     cookbook = models.ForeignKey("books.Book", on_delete=models.CASCADE)
     recipe = models.ForeignKey("Recipe", on_delete=models.CASCADE)
+    page = models.IntegerField("Page No.", default=0)
+    url = models.URLField("URL", default="_")
 
     def __str__(self):
         return f"{self.cookbook.title}; {self.recipe.title}"
