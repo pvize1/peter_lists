@@ -14,7 +14,7 @@ def PasswdDisplay(request):
     if request.GET.get("uppercase"):
         chars.extend(list("ABCDEFGHIJKLMNOPQRSTUVWXYZ"))
     if request.GET.get("special"):
-        chars.extend(list("!£$%^&*()_+@#[]{}=-\/?,.<>"))
+        chars.extend(list("!£$%^&*()_+@#[]{}=-?,.<>"))
     if request.GET.get("numbers"):
         chars.extend(list("1234567890"))
     length = int(request.GET.get("length", 12))
