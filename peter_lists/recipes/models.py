@@ -24,6 +24,7 @@ class Ingredient(TimeStampedModel):
         CHOPPED = "CHP", _("Chopped")
         DICED = "DCD", _("Diced")
         SLICED = "SLC", _("Sliced")
+        MELTED = "MLT", _("Melted")
         NONE = "NON", _("_")
 
     name = models.CharField("Ingredient", max_length=250, blank=True, default="_")
@@ -51,7 +52,8 @@ class IngredientList(TimeStampedModel):
         UNIT = "UNT", _("Unit")
         PORTION = "POR", _("Portion")
         SPLASH = "SPL", _("Splash")
-        HANDFULL = "HND", _("Handfull")
+        TASTE = "TST", _("To Taste")
+        HANDFULL = "HND", _("Handful")
         NONE = "NON", _("_")
 
     recipe = models.ForeignKey("Recipe", on_delete=models.CASCADE)
