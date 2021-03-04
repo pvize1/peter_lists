@@ -6,6 +6,10 @@ def make_fiction(modeladmin, request, queryset):
     queryset.update(type=7)
 
 
+def make_nonfiction(modeladmin, request, queryset):
+    queryset.update(type=6)
+
+
 def make_read(modeladmin, request, queryset):
     queryset.update(status="RD")
 
@@ -15,6 +19,7 @@ def make_reading(modeladmin, request, queryset):
 
 
 make_fiction.short_description = "Mark book types as Fiction"
+make_nonfiction.short_description = "Mark book types as Non-Fiction"
 make_read.short_description = "Mark book status as Completed"
 make_reading.short_description = "Mark book status as Reading"
 
@@ -37,6 +42,7 @@ class BookAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ("title",)}
     actions = [
         make_fiction,
+        make_nonfiction,
         make_read,
         make_reading,
     ]
