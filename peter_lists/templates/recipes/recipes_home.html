@@ -8,4 +8,21 @@
   <p>{{ text }}</p>
   <p>{{ count }}</p>
 
+  {% for recipe in recipe_list %}
+    <div class="row">
+      <div class="col-sm">
+        {{ recipe.title }}
+      </div>
+      <div class="col-sm">
+        {{ recipe.description }}
+      </div>
+      <div class="col-sm">
+        {{ recipe.method }}
+      </div>
+      <div class="col-sm">
+        {{ recipe.tag }}
+      </div>
+    </div>
+  {% endfor %}
+
 {% endblock content %}
