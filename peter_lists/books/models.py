@@ -72,6 +72,7 @@ class Book(TimeStampedModel):
     creator = models.ForeignKey(
         settings.AUTH_USER_MODEL, null=True, on_delete=models.SET_NULL
     )
+    tag = models.CharField("Tag", max_length=100, blank=True, default="none, ")
     rating = models.IntegerField("Rating (1-10)", default=0)
     pct_read = models.IntegerField("Pct% Read", default=0)
 

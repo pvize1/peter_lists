@@ -41,14 +41,17 @@ class Ingredient(TimeStampedModel):
 
 class IngredientList(TimeStampedModel):
     class UomChoices(models.TextChoices):
-        GRAM = "GRM", _("Grammes")
-        MILLILITRE = "MLT", _("Millilitres")
-        LITRE = "LTR", _("Litres")
-        UNIT = "UNT", _("Unit")
+        GRAM = "GRM", _("Gram")
+        KILO = "KGM", _("Kilogram")
+        MILLILITRE = "MLT", _("Millilitre")
+        LITRE = "LTR", _("Litre")
         TSP = "TSP", _("Tea Spoon")
         TBSP = "TBS", _("Table Spoon")
+        DSP = "DSP", _("Dessert Spoon")
+        UNIT = "UNT", _("Unit")
         PORTION = "POR", _("Portion")
         SPLASH = "SPL", _("Splash")
+        HANDFULL = "HND", _("Handfull")
         NONE = "NON", _("_")
 
     recipe = models.ForeignKey("Recipe", on_delete=models.CASCADE)

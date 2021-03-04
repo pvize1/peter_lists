@@ -1,60 +1,57 @@
 {% extends "base.html" %}
 {% block content %}
 
-  <div class="container">
-    <div class="jumbotron">
-      <h2 class="text-center">Random number generator</h2>
+  <div class="jumbotron">
+    <h2 class="text-center display-1">Random number generator</h2>
+  </div>
+
+  <form action="{% url "passwd:display" %}">
+    <div class="input-group mb-3">
+      <label class="input-group-text" for="optLength">No. of Characters</label>
+      <select name="length" class="custom-select col-3" id="optLength">
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+        <option value="11">11</option>
+        <option value="12" selected="selected">12</option>
+        <option value="13">13</option>
+        <option value="14">14</option>
+        <option value="15">15</option>
+        <option value="16">16</option>
+      </select>
     </div>
 
-    <form action="{% url "passwd:display" %}">
-      <div class="input-group mb-3">
-        <label class="input-group-text" for="optLength">No. of Characters</label>
-          <select name="length" class="custom-select col-3" id="optLength">
-            <option value="8">8</option>
-            <option value="9">9</option>
-            <option value="10">10</option>
-            <option value="11">11</option>
-            <option value="12" selected="selected">12</option>
-            <option value="13">13</option>
-            <option value="14">14</option>
-            <option value="15">15</option>
-            <option value="16">16</option>
-          </select>
+    <div class="form-group row">
+      <div class="col-2">Uppercase</div>
+      <div class="col-3">
+        <input class="form-check-input" type="checkbox" name="uppercase" id="optUpper">
+        <label class="col-form-label-sm" for="optUpper">(Include uppercase letters)</label>
       </div>
+    </div>
 
-      <div class="form-group row">
-        <div class="col-2">Uppercase</div>
-        <div class="col-3">
-          <input class="form-check-input" type="checkbox" name="uppercase" id="optUpper">
-          <label class="col-form-label-sm" for="optUpper">(Include uppercase letters)</label>
-        </div>
+    <div class="form-group row">
+      <div class="col-2">Special Characters</div>
+      <div class="col-3">
+        <input class="form-check-input" type="checkbox" name="special" id="optSpecial">
+        <label class="col-form-label-sm" for="optSpecial">(Include special characters)</label>
       </div>
+    </div>
 
-      <div class="form-group row">
-        <div class="col-2">Special Characters</div>
-        <div class="col-3">
-          <input class="form-check-input" type="checkbox" name="special" id="optSpecial">
-          <label class="col-form-label-sm" for="optSpecial">(Include special characters)</label>
-        </div>
+    <div class="form-group row">
+      <div class="col-2">Numbers</div>
+      <div class="col-3">
+        <input class="form-check-input" type="checkbox" name="numbers" id="optNumbers">
+        <label class="col-form-label-sm" for="optNumbers">(Include numbers)</label>
       </div>
+    </div>
 
-      <div class="form-group row">
-        <div class="col-2">Numbers</div>
-        <div class="col-3">
-          <input class="form-check-input" type="checkbox" name="numbers" id="optNumbers">
-          <label class="col-form-label-sm" for="optNumbers">(Include numbers)</label>
-        </div>
+    <br/>
+    <br/>
+    <div class="form-group row">
+      <div class="col-2">
+        <input type="submit" value="Generate Password" class="btn btn-primary">
       </div>
-
-      <br/>
-      <br/>
-      <div class="form-group row">
-        <div class="col-2">
-          <input type="submit" value="Generate Password" class="btn btn-primary">
-        </div>
-      </div>
-    </form>
-
-  </div>
+    </div>
+  </form>
 
 {% endblock content %}

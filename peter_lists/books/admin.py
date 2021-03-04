@@ -2,16 +2,44 @@ from django.contrib import admin
 from .models import Book, Author, BookType, Publisher
 
 
+def make_fiction(modeladmin, request, queryset):
+    queryset.update(type=7)
+
+
+def make_read(modeladmin, request, queryset):
+    queryset.update(status="RD")
+
+
+def make_reading(modeladmin, request, queryset):
+    queryset.update(status="RG")
+
+
+make_fiction.short_description = "Mark book types as Fiction"
+make_read.short_description = "Mark book status as Completed"
+make_reading.short_description = "Mark book status as Reading"
+
+
 @admin.register(Book)
 class BookAdmin(admin.ModelAdmin):
     list_display = [
         "title",
+        "subtitle",
         "author",
+        "publisher",
         "type",
         "status",
     ]
-    ordering = ["type", "status", "title"]
+    ordering = [
+        "type__type",
+        "status",
+        "title",
+    ]
     prepopulated_fields = {"slug": ("title",)}
+    actions = [
+        make_fiction,
+        make_read,
+        make_reading,
+    ]
     # date_hierarchy = ""
     list_filter = [
         "type__type",
@@ -28,17 +56,26 @@ class BookAdmin(admin.ModelAdmin):
 
 @admin.register(Author)
 class AuthorAdmin(admin.ModelAdmin):
-    list_display = ("name",)
+    list_display = (
+        "id",
+        "name",
+    )
     ordering = ["name"]
 
 
 @admin.register(BookType)
 class BookTypeAdmin(admin.ModelAdmin):
-    list_display = ("type",)
+    list_display = (
+        "id",
+        "type",
+    )
     ordering = ["type"]
 
 
 @admin.register(Publisher)
 class PublisherAdmin(admin.ModelAdmin):
-    list_display = ("name",)
+    list_display = (
+        "id",
+        "name",
+    )
     ordering = ["name"]
