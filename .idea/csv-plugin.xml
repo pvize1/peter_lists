@@ -220,6 +220,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\recipes.json">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
       </map>
     </option>
   </component>
