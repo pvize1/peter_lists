@@ -22,6 +22,9 @@ class Ingredient(TimeStampedModel):
         COOKED = "CKD", _("Cooked")
         PORTION = "POR", _("Portion")
         CHOPPED = "CHP", _("Chopped")
+        DRIED = "DRY", _("Dried")
+        WARM = "WRM", _("Warm")
+        COLD = "CLD", _("Cold")
         DICED = "DCD", _("Diced")
         SLICED = "SLC", _("Sliced")
         MELTED = "MLT", _("Melted")
@@ -104,7 +107,7 @@ class CookBookList(TimeStampedModel):
     cookbook = models.ForeignKey("books.Book", on_delete=models.CASCADE)
     recipe = models.ForeignKey("Recipe", on_delete=models.CASCADE)
     page = models.IntegerField("Page No.", default=0)
-    url = models.URLField("URL", default="_")
+    url = models.URLField("URL", default="", blank=True, null=True)
 
     def __str__(self):
         return f"{self.cookbook.title}; {self.recipe.title}"
