@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.utils.translation import gettext_lazy as _
 from .models import Book, Author, BookType, Publisher
 
 
@@ -26,6 +27,28 @@ make_reading.short_description = "Mark book status as Reading"
 
 @admin.register(Book)
 class BookAdmin(admin.ModelAdmin):
+    fieldsets = (
+        (
+            _("ABOUT"),
+            {
+                "fields": (
+                    ("title", "tag", "slug"),
+                    ("subtitle", "author"),
+                    "description",
+                )
+            },
+        ),
+        (
+            _("DETAILS"),
+            {
+                "fields": (
+                    ("publisher", "isbn"),
+                    ("type", "status", "form"),
+                    ("pages", "rating", "pct_read"),
+                )
+            },
+        ),
+    )
     list_display = [
         "title",
         "subtitle",

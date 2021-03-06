@@ -1,10 +1,12 @@
 from django.contrib import admin
+from django.utils.translation import gettext_lazy as _
 from .models import Foodstuff, Ingredient, IngredientList, Recipe, CookBookList
 
 
 class ingredient_list_inline(admin.TabularInline):
     model = IngredientList
     extra = 1
+
 
 class cookbook_list_inline(admin.TabularInline):
     model = CookBookList
@@ -13,6 +15,10 @@ class cookbook_list_inline(admin.TabularInline):
 
 @admin.register(Recipe)
 class RecipeAdmin(admin.ModelAdmin):
+    fieldsets = (
+        (_("GENERAL"), {"fields": (("title", "tag", "slug"), "description")}),
+        (_("COOKING"), {"fields": (("serves", "prep", "cook"), "method")}),
+    )
     list_display = ["title", "description"]
     prepopulated_fields = {"slug": ("title",)}
     inlines = [ingredient_list_inline, cookbook_list_inline]
