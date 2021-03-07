@@ -14,6 +14,7 @@ class PublisherListView(ListView):
 
 
 class BookListView(ListView):
+    paginate_by = 25
     model = Book
     template_name = "books/book_list.html"
 

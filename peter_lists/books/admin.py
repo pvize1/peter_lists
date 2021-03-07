@@ -73,13 +73,17 @@ class BookAdmin(admin.ModelAdmin):
     list_filter = [
         "type__type",
         "status",
+        "form",
         "author__name",
+        "publisher__name",
     ]
     search_fields = [
         "title",
+        "subtitle",
         "type__type",
         "status",
         "author__name",
+        "publisher__name",
     ]
 
 

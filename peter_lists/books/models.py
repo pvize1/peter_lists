@@ -76,6 +76,12 @@ class Book(TimeStampedModel):
     rating = models.IntegerField("Rating (1-10)", default=0)
     pct_read = models.IntegerField("Pct% Read", default=0)
 
+    class Meta:
+        ordering = [
+            "title",
+            "subtitle",
+        ]
+
     def __str__(self):
         return self.title
 

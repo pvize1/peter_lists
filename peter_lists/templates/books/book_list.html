@@ -3,53 +3,61 @@
 
 {% block content %}
 
+  <h2 class="display-2">Book List</h2>
+  <br/>
 
-  <div class="container">
-    <div class="jumbotron">
-      <h2 class="text-center">Book List</h2>
+  <div class="row">
+    <div class="col-sm">
+      <b>Title</b>
     </div>
-    <br/>
-
+    <div class="col-sm">
+      <b>Author</b>
+    </div>
+    <div class="col-sm">
+      <b>Book Type</b>
+    </div>
+  </div>
+  {% for book in page_obj %}
     <div class="row">
       <div class="col-sm">
-        <b>Title</b>
+        <a href="{% url 'books:detail' book.slug %}">{{ book.title }}</a>
       </div>
       <div class="col-sm">
-        <b>Author</b>
+        {{ book.author }}
       </div>
       <div class="col-sm">
-        <b>Book Type</b>
-      </div>
-      <div class="col-sm">
-        <b>Description</b>
+        {{ book.type }}
       </div>
     </div>
-    {% for book in book_list %}
-      <div class="row">
-        <div class="col-sm">
-          <a href="{% url 'books:detail' book.slug %}">{{ book.title }}</a>
-        </div>
-        <div class="col-sm">
-          {{ book.author }}
-        </div>
-        <div class="col-sm">
-          {{ book.type }}
-        </div>
-        <div class="col-sm">
-          {{ book.description }}
-        </div>
-      </div>
-    {% endfor %}
+  {% endfor %}
 
-    <br/>
-    <hr/>
+  <br/>
 
-    <br/>
-    <p>Don't see a book listed here?</p>
-    <p>
-      <a class="btn btn-primary" href="{% url 'books:add' %}" role="button">Add Book</a>
-    </p>
+  <div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+          <a class="btn btn-info btn_sm" href="?page=1">&laquo; first</a>
+          <a class="btn btn-info btn_sm" href="?page={{ page_obj.previous_page_number }}">previous</a>
+        {% endif %}
 
+      <span class="current btn btn-outline-info">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+      </span>
 
+      {% if page_obj.has_next %}
+        <a class="btn btn-info btn_sm" href="?page={{ page_obj.next_page_number }}">next</a>
+        <a class="btn btn-info btn_sm" href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+      {% endif %}
+    </span>
   </div>
+
+  <br/>
+  <hr/>
+
+  <br/>
+  <p>Don't see a book listed here?</p>
+  <p>
+    <a class="btn btn-primary" href="{% url 'books:add' %}" role="button">Add Book</a>
+  </p>
+
 {% endblock content %}
