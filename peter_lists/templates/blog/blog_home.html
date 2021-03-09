@@ -3,26 +3,23 @@
 
 {% block content %}
 
-  <div class="container">
-    <div class="jumbotron">
-      <h1 class="text-center">My Diary Blog</h1>
-    </div>
-    <h3>Latest 3 blog entries</h3>
-    <br/>
 
-    {% for blog in blogs %}
-      <h2>{{ blog.title }}</h2>
-      <p>{{ blog.description }}</p>
-      <p><i>{{ blog.tag }}</i></p>
-      <p>{{ blog.date }}</p>
-      <br/>
-    {% endfor %}
+  <h2 class="display-2">My Diary Blog</h2>
+  <h3>Latest 3 blog entries</h3>
+  <br/>
 
+  {% for blog in blogs %}
+    <h2>{{ blog.title }}</h2>
+    <p>{{ blog.description }}</p>
+    <p><i>{{ blog.tag }}</i></p>
+    <p>{{ blog.date }}</p>
     <br/>
-    <hr/>
-    <br/>
-    <p><a class="btn btn-primary" href="{% url 'blog:list' %}" role="button">List of all blog entries</a>
+  {% endfor %}
+
+  <br/>
+  <hr/>
+  <br/>
+  <p><a class="btn btn-primary" href="{% url 'blog:list' %}" role="button">List of all blog entries</a>
     <span><a class="btn btn-primary" href="{% url 'books:add' %}" role="button">Add Blog entry</a></span></p>
-  </div>
 
 {% endblock content %}

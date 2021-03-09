@@ -1,3 +1,35 @@
-{{% block name %}
+{% extends "base.html" %}
+{% block title %}Author List{% endblock title %}
 
-{% endblock %}
+{% block content %}
+
+  <h2 class="display-2">List of Authors</h2>
+  <br/>
+
+  <div class="row">
+    <div class="col-sm">
+      <b>Author</b>
+    </div>
+  </div>
+  {% for author in page_obj %}
+    <div class="row">
+      <div class="col-sm">
+        <a href="{% url 'books:author_book_list' author.name %}">{{ author.name }}</a>
+      </div>
+    </div>
+  {% endfor %}
+
+  <br/>
+
+  {% include "pagination.html" with page_obj=page_obj %}
+
+  <br/>
+  <hr/>
+
+  <br/>
+  <p>Don't see an author here?</p>
+  <p>
+    <a class="btn btn-primary" href="{% url 'books:add' %}" role="button">Add an Author</a>
+  </p>
+
+{% endblock content %}

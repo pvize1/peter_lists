@@ -9,6 +9,9 @@ from django.urls import reverse
 class Author(TimeStampedModel):
     name = models.CharField("Author Name", max_length=250)
 
+    class Meta:
+        ordering = ["name"]
+
     def __str__(self):
         return self.name
 
@@ -22,6 +25,9 @@ class BookType(TimeStampedModel):
 
 class Publisher(TimeStampedModel):
     name = models.CharField("Book Publisher", max_length=250)
+
+    class Meta:
+        ordering = ["name"]
 
     def __str__(self):
         return self.name

@@ -3,25 +3,24 @@
 
 {% block content %}
 
-  <div class="container">
-    <div class="jumbotron">
-      <h2 class="text-center">Total Blog List</h2>
-    </div>
-    <br/>
+  <h2 class="display-2">Total Blog List</h2>
+  <br/>
 
-    {% for blog in blog_list %}
-      <h2>{{ blog.title }}</h2>
-      <p>{{ blog.description }}</p>
-      <p><i>{{ blog.tag }}</i></p>
-      <p>{{ blog.date }}</p>
-      <br/>
-    {% endfor %}
-
+  {% for blog in page_obj %}
+    <h2>{{ blog.title }}</h2>
+    <p>{{ blog.description }}</p>
+    <p><i>{{ blog.tag }}</i></p>
+    <p>{{ blog.date }}</p>
     <br/>
-    <hr/>
+  {% endfor %}
 
-    <br/>
-    <p>Want to add a new blog entry?</p>
-    <p><a class="btn btn-primary" href="{% url 'books:add' %}" role="button">Add Blog entry</a></p>
-  </div>
+  <br/>
+  <hr/>
+
+  {% include "pagination.html" with page_obj=page_obj %}
+
+  <br/>
+  <p>Want to add a new blog entry?</p>
+  <p><a class="btn btn-primary" href="{% url 'books:add' %}" role="button">Add Blog entry</a></p>
+
 {% endblock content %}

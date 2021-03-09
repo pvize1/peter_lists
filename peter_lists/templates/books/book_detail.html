@@ -3,44 +3,62 @@
 
 {% block content %}
 
-<h2>{{ book.title }}</h2>
-{% if book.subtitle %}
-  <p>{{ book.subtitle }}</p>
-{% endif %}
-{% if book.author %}
-  <p>{{ book.author }}</p>
-{% endif %}
-{% if book.description %}
-  <p>{{ book.description }}</p>
-{% endif %}
-{% if book.isbn %}
-  <p>{{ book.isbn }}</p>
-{% endif %}
-{% if book.publisher %}
-  <p>{{ book.publisher }}</p>
-{% endif %}
-{% if book.type %}
-  <p>{{ book.type }}</p>
-{% endif %}
-{% if book.form %}
-  <p>{{ book.get_form_display }}</p>
-{% endif %}
-{% if book.status %}
-  <p>{{ book.get_status_display }}</p>
-{% endif %}
+  <h2>{{ book.title }}</h2>
 
-<hr/>
+  {% if book.subtitle %}
+    <i>Subtitle:</i>
+    <p>{{ book.subtitle }}</p>
+  {% endif %}
 
-{% if book.creator %}
-  <h3>Submitted by <a href="{{ book.creator.get_absolute_url }}">{{ book.creator.username }}</a></h3>
+  {% if book.author %}
+    <i>Author:</i>
+    <p>{{ book.author }}</p>
+  {% endif %}
+
+  <br/>
+
+  {% if book.description %}
+    <i>Descripton:</i>
+    <p>{{ book.description }}</p>
+  {% endif %}
+
+  {% if book.isbn %}
+    <i>ISBN:</i>
+    <p>{{ book.isbn }}</p>
+  {% endif %}
+
+  {% if book.publisher %}
+    <i>Publisher:</i>
+    <p>{{ book.publisher }}</p>
+  {% endif %}
+
+  {% if book.type %}
+    <i>Type:</i>
+    <p>{{ book.type }}</p>
+  {% endif %}
+
+  {% if book.form %}
+    <i>Form:</i>
+    <p>{{ book.get_form_display }}</p>
+  {% endif %}
+
+  {% if book.status %}
+    <i>Status:</i>
+    <p>{{ book.get_status_display }}</p>
+  {% endif %}
+
+  <hr/>
+
+  {% if book.creator %}
+    <h3>Submitted by <a href="{{ book.creator.get_absolute_url }}">{{ book.creator.username }}</a></h3>
     {% if book.creator.name %}
-        <p>{{ book.creator.name }}</p>
+      <p>{{ book.creator.name }}</p>
     {% endif %}
-{% endif %}
+  {% endif %}
 
-<p>
-  <a class="btn btn-primary" href="{% url 'books:update' book.slug %}" role="button">Update</a>
-</p>
+  <p>
+    <a class="btn btn-primary" href="{% url 'books:update' book.slug %}" role="button">Edit Book</a>
+  </p>
 
 {% endblock content %}
 

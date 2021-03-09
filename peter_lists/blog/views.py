@@ -11,4 +11,5 @@ def BlogHome(request):
 
 class BlogListView(ListView):
     model = Blog
+    paginate_by = 3
     template_name = "blog/blog_list.html"
