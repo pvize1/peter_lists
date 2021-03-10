@@ -16,7 +16,7 @@ class Author(TimeStampedModel):
     def __str__(self):
         return self.name
 
-    def save(self, *args, **kwargs):  # new
+    def save(self, *args, **kwargs):
         if (not self.slug) or (self.slug == "_"):
             self.slug = slugify(self.name)
         return super().save(*args, **kwargs)
@@ -39,7 +39,7 @@ class Publisher(TimeStampedModel):
     def __str__(self):
         return self.name
 
-    def save(self, *args, **kwargs):  # new
+    def save(self, *args, **kwargs):
         if (not self.slug) or (self.slug == "_"):
             self.slug = slugify(self.name)
         return super().save(*args, **kwargs)

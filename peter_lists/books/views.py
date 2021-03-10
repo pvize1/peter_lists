@@ -14,10 +14,10 @@ class AuthorBookListView(ListView):
     model = Book
     paginate_by = 25
     template_name = "books/book_list.html"
-    head = "For Author ="
 
     def get_queryset(self):
         self.author = get_object_or_404(Author, name=self.kwargs['author'])
+        self.head = f"For Author = {self.author}"
         return Book.objects.filter(author=self.author)
 
 
