@@ -1,6 +1,19 @@
 from django.contrib import admin
+from django.template.defaultfilters import slugify
 from django.utils.translation import gettext_lazy as _
 from .models import Book, Author, BookType, Publisher
+
+
+def slug_author(modeladmin, request, queryset):
+    for record in queryset:
+        record.slug = slugify(record.name)
+        record.save()
+
+
+def slug_publisher(modeladmin, request, queryset):
+    for record in queryset:
+        record.slug = slugify(record.name)
+        record.save()
 
 
 def make_fiction(modeladmin, request, queryset):
@@ -19,6 +32,8 @@ def make_reading(modeladmin, request, queryset):
     queryset.update(status="RG")
 
 
+slug_author.short_description = "Update slug"
+slug_publisher.short_description = "Update slug"
 make_fiction.short_description = "Mark book types as Fiction"
 make_nonfiction.short_description = "Mark book types as Non-Fiction"
 make_read.short_description = "Mark book status as Completed"
@@ -92,8 +107,10 @@ class AuthorAdmin(admin.ModelAdmin):
     list_display = (
         "id",
         "name",
+        "slug",
     )
     ordering = ["name"]
+    actions = [slug_author]
 
 
 @admin.register(BookType)
@@ -110,5 +127,7 @@ class PublisherAdmin(admin.ModelAdmin):
     list_display = (
         "id",
         "name",
+        "slug",
     )
     ordering = ["name"]
+    actions = [slug_publisher]

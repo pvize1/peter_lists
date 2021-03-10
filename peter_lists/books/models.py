@@ -8,12 +8,18 @@ from django.urls import reverse
 
 class Author(TimeStampedModel):
     name = models.CharField("Author Name", max_length=250)
+    slug = models.SlugField(unique=True, default="_", blank=False)
 
     class Meta:
         ordering = ["name"]
 
     def __str__(self):
         return self.name
+
+    def save(self, *args, **kwargs):  # new
+        if (not self.slug) or (self.slug == "_"):
+            self.slug = slugify(self.name)
+        return super().save(*args, **kwargs)
 
 
 class BookType(TimeStampedModel):
@@ -25,12 +31,18 @@ class BookType(TimeStampedModel):
 
 class Publisher(TimeStampedModel):
     name = models.CharField("Book Publisher", max_length=250)
+    slug = models.SlugField(unique=True, default="_", blank=False)
 
     class Meta:
         ordering = ["name"]
 
     def __str__(self):
         return self.name
+
+    def save(self, *args, **kwargs):  # new
+        if (not self.slug) or (self.slug == "_"):
+            self.slug = slugify(self.name)
+        return super().save(*args, **kwargs)
 
 
 class Book(TimeStampedModel):

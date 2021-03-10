@@ -31,10 +31,10 @@ class PublisherBookListView(ListView):
     model = Book
     paginate_by = 25
     template_name = "books/book_list.html"
-    head = "For Publisher ="
 
     def get_queryset(self):
         self.publisher = get_object_or_404(Publisher, name=self.kwargs['publisher'])
+        self.head = f"For Publisher = {self.publisher}"
         return Book.objects.filter(publisher=self.publisher)
 
 class BookListView(ListView):
