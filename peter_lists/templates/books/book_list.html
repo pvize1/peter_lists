@@ -4,44 +4,101 @@
 {% block content %}
 
   <h2 class="display-2">Book List</h2>
+  {% if view.head %}
+    <h3>{{ view.head }}
+      {% if view.author %}
+        {{ view.author }}
+      {% else %}
+        {{ view.publisher }}
+      {% endif %}
+    </h3>
+  {% endif %}
   <br/>
 
   <div class="row">
     <div class="col-sm">
       <b>Title</b>
     </div>
-    <div class="col-sm">
-      <b>Author</b>
-    </div>
-    <div class="col-sm">
-      <b>Book Type</b>
-    </div>
+    {% if view.head %}
+      {% if view.author %}
+        <div class="col-sm">
+          <b>Publisher</b>
+        </div>
+      {% else %}
+        <div class="col-sm">
+          <b>Author</b>
+        </div>
+      {% endif %}
+      <div class="col-sm">
+        <b>Book Type</b>
+      </div>
+    {% else %}
+      <div class="col-sm">
+        <b>Author</b>
+      </div>
+      <div class="col-sm">
+        <b>Publisher</b>
+      </div>
+    {% endif %}
   </div>
+
   {% for book in page_obj %}
     <div class="row">
       <div class="col-sm">
         <a href="{% url 'books:detail' book.slug %}">{{ book.title }}</a>
       </div>
-      <div class="col-sm">
-        {{ book.author }}
-      </div>
-      <div class="col-sm">
-        {{ book.type }}
-      </div>
+      {% if view.head %}
+        {% if view.author %}
+          <div class="col-sm">
+            <a href="{% url 'books:publisher_book_list' book.publisher %}">{{ book.publisher }}</a>
+          </div>
+        {% else %}
+          <div class="col-sm">
+            <a href="{% url 'books:author_book_list' book.author %}">{{ book.author }}</a>
+          </div>
+        {% endif %}
+        <div class="col-sm">
+          {{ book.type }}
+        </div>
+      {% else %}
+        <div class="col-sm">
+          <a href="{% url 'books:author_book_list' book.author %}">{{ book.author }}</a>
+        </div>
+        <div class="col-sm">
+          <a href="{% url 'books:publisher_book_list' book.publisher %}">{{ book.publisher }}</a>
+        </div>
+      {% endif %}
     </div>
   {% endfor %}
 
   <br/>
-
   {% include "pagination.html" with page_obj=page_obj %}
-
   <br/>
   <hr/>
 
-  <br/>
-  <p>Don't see a book listed here?</p>
-  <p>
-    <a class="btn btn-primary" href="{% url 'books:add' %}" role="button">Add Book</a>
-  </p>
+  <div class="row">
+    <div class="col-sm">
+      <p>Don't see a book listed here?</p>
+    </div>
+    <div class="col-sm">
+      <p></p>
+    </div>
+    <div class="col-sm">
+      <p></p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm">
+      <a class="btn btn-primary" href="{% url 'books:add' %}" role="button">Add Book</a>
+    </div>
+    <div class="col-sm">
+      <a class="btn btn-primary" href="{% url 'books:list' %}" role="button">All Books</a>
+      <a class="btn btn-primary" href="{% url 'books:author_list' %}" role="button">All Authors</a>
+      <a class="btn btn-primary" href="{% url 'books:publishers_list' %}" role="button">All Publishers</a>
+    </div>
+    <div class="col-sm">
+      <p></p>
+    </div>
+  </div>
 
 {% endblock content %}
