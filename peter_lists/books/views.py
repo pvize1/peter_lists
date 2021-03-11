@@ -2,6 +2,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from django.shortcuts import get_object_or_404
 from .models import Book, Author, Publisher
+from .forms import CreateBookForm
 
 
 class AuthorListView(ListView):
@@ -16,7 +17,7 @@ class AuthorBookListView(ListView):
     template_name = "books/book_list.html"
 
     def get_queryset(self):
-        self.author = get_object_or_404(Author, name=self.kwargs['author'])
+        self.author = get_object_or_404(Author, name=self.kwargs["author"])
         self.head = f"For Author = {self.author}"
         return Book.objects.filter(author=self.author)
 
@@ -33,9 +34,10 @@ class PublisherBookListView(ListView):
     template_name = "books/book_list.html"
 
     def get_queryset(self):
-        self.publisher = get_object_or_404(Publisher, name=self.kwargs['publisher'])
+        self.publisher = get_object_or_404(Publisher, name=self.kwargs["publisher"])
         self.head = f"For Publisher = {self.publisher}"
         return Book.objects.filter(publisher=self.publisher)
+
 
 class BookListView(ListView):
     model = Book
@@ -66,6 +68,13 @@ class BookCreateView(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         form.instance.creator = self.request.user
         return super().form_valid(form)
+
+
+class BookCreateForm(LoginRequiredMixin, CreateView):
+    form_class = CreateBookForm
+    model = Book
+    action = "Add"
+    template_name = "books/book_form.html"
 
 
 class BookUpdateView(LoginRequiredMixin, UpdateView):

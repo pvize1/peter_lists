@@ -16,6 +16,9 @@ class Author(TimeStampedModel):
     def __str__(self):
         return self.name
 
+    def get_absolute_url(self):
+        return reverse("books:author_list")
+
     def save(self, *args, **kwargs):
         if (not self.slug) or (self.slug == "_"):
             self.slug = slugify(self.name)
@@ -38,6 +41,9 @@ class Publisher(TimeStampedModel):
 
     def __str__(self):
         return self.name
+
+    def get_absolute_url(self):
+        return reverse("books:publishers_list")
 
     def save(self, *args, **kwargs):
         if (not self.slug) or (self.slug == "_"):
@@ -104,7 +110,7 @@ class Book(TimeStampedModel):
         return self.title
 
     def get_absolute_url(self):
-        return reverse("books:detail", kwargs={"slug": self.slug})
+        return reverse("books:list")
 
     def save(self, *args, **kwargs):  # new
         if (not self.slug) or (self.slug == "_"):

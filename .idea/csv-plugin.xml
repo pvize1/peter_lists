@@ -66,6 +66,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\peter_lists\books\forms.py">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\peter_lists\books\models.py">
           <value>
             <Attribute>
@@ -196,6 +203,13 @@
           <value>
             <Attribute>
               <option name="separator" value=":" />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\peter_lists\templates\books\book_form.html">
+          <value>
+            <Attribute>
+              <option name="separator" value="|" />
             </Attribute>
           </value>
         </entry>

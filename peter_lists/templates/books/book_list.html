@@ -39,7 +39,7 @@
   {% for book in page_obj %}
     <div class="row">
       <div class="col-sm">
-        <a href="{% url 'books:detail' book.slug %}">{{ book.title }}</a>
+        <a href="{% url 'books:update' book.slug %}">{{ book.title }}</a>
       </div>
       {% if view.head %}
         {% if view.author %}
