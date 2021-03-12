@@ -4,7 +4,7 @@ from crispy_forms.layout import Layout, Fieldset, Row, Column, Submit
 from .models import Book
 
 
-class CreateBookForm(forms.ModelForm):
+class EditBookForm(forms.ModelForm):
     class Meta:
         model = Book
         fields = [
@@ -18,6 +18,7 @@ class CreateBookForm(forms.ModelForm):
             "type",
             "form",
             "status",
+            "isbn",
         ]
 
     def __init__(self, *args, **kwargs):
@@ -32,12 +33,12 @@ class CreateBookForm(forms.ModelForm):
                 Row(
                     Column("title", css_class="form-group col-sm"),
                     Column("tag", css_class="form-group col-sm"),
-                    # css_class='form-row'
+                    css_class='form-row'
                 ),
                 Row(
                     Column("subtitle", css_class="form-group col-sm"),
                     Column("slug", css_class="form-group col-sm"),
-                    # css_class='form-row'
+                    css_class='form-row'
                 ),
             ),
             "description",
@@ -46,15 +47,20 @@ class CreateBookForm(forms.ModelForm):
                 Row(
                     Column("author", css_class="form-group col-sm"),
                     Column("publisher", css_class="form-group col-sm"),
-                    # css_class='form-row'
+                    css_class='form-row'
                 ),
                 Row(
                     Column("type", css_class="form-group col-sm"),
                     Column("form", css_class="form-group col-sm"),
-                    # css_class='form-row'
+                    css_class='form-row'
+                ),
+                Row(
+                    Column("status", css_class="form-group col-sm"),
+                    Column("isbn", css_class="form-group col-sm"),
+                    css_class='form-row'
                 ),
             ),
             Submit('submit', 'Save Book')
         )
         self.request = kwargs.pop("request", None)
-        return super(CreateBookForm, self).__init__(*args, **kwargs)
+        return super(EditBookForm, self).__init__(*args, **kwargs)

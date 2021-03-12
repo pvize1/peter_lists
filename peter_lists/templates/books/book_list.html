@@ -13,27 +13,18 @@
     <div class="col-sm">
       <b>Title</b>
     </div>
-    {% if view.head %}
-      {% if view.author %}
-        <div class="col-sm">
-          <b>Publisher</b>
-        </div>
-      {% else %}
-        <div class="col-sm">
-          <b>Author</b>
-        </div>
-      {% endif %}
-      <div class="col-sm">
-        <b>Book Type</b>
-      </div>
-    {% else %}
-      <div class="col-sm">
-        <b>Author</b>
-      </div>
-      <div class="col-sm">
-        <b>Publisher</b>
-      </div>
-    {% endif %}
+    <div class="col-sm">
+      <b>Sub-Title</b>
+    </div>
+    <div class="col-sm">
+      <b>Author</b>
+    </div>
+    <div class="col-sm">
+      <b>Publisher</b>
+    </div>
+    <div class="col-sm">
+      <b>Status</b>
+    </div>
   </div>
 
   {% for book in page_obj %}
@@ -41,27 +32,18 @@
       <div class="col-sm">
         <a href="{% url 'books:update' book.slug %}">{{ book.title }}</a>
       </div>
-      {% if view.head %}
-        {% if view.author %}
-          <div class="col-sm">
-            <a href="{% url 'books:publisher_book_list' book.publisher %}">{{ book.publisher }}</a>
-          </div>
-        {% else %}
-          <div class="col-sm">
-            <a href="{% url 'books:author_book_list' book.author %}">{{ book.author }}</a>
-          </div>
-        {% endif %}
-        <div class="col-sm">
-          {{ book.type }}
-        </div>
-      {% else %}
-        <div class="col-sm">
-          <a href="{% url 'books:author_book_list' book.author %}">{{ book.author }}</a>
-        </div>
-        <div class="col-sm">
-          <a href="{% url 'books:publisher_book_list' book.publisher %}">{{ book.publisher }}</a>
-        </div>
-      {% endif %}
+      <div class="col-sm">
+        {{ book.subtitle }}
+      </div>
+      <div class="col-sm">
+        <a href="{% url 'books:author_book_list' book.author %}">{{ book.author }}</a>
+      </div>
+      <div class="col-sm">
+        <a href="{% url 'books:publisher_book_list' book.publisher %}">{{ book.publisher }}</a>
+      </div>
+      <div class="col-sm">
+        {{ book.get_status_display }}
+      </div>
     </div>
   {% endfor %}
 

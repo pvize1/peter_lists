@@ -2,7 +2,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from django.shortcuts import get_object_or_404
 from .models import Book, Author, Publisher
-from .forms import CreateBookForm
+from .forms import EditBookForm
 
 
 class AuthorListView(ListView):
@@ -50,44 +50,15 @@ class BookDetailView(DetailView):
     template_name = "books/book_detail.html"
 
 
-class BookCreateView(LoginRequiredMixin, CreateView):
-    model = Book
-    template_name = "books/book_form.html"
-    fields = [
-        "title",
-        "subtitle",
-        "description",
-        "author",
-        "publisher",
-        "type",
-        "form",
-        "status",
-    ]
-    action = "Add"
-
-    def form_valid(self, form):
-        form.instance.creator = self.request.user
-        return super().form_valid(form)
-
-
 class BookCreateForm(LoginRequiredMixin, CreateView):
-    form_class = CreateBookForm
+    form_class = EditBookForm
     model = Book
     action = "Add"
     template_name = "books/book_form.html"
 
 
-class BookUpdateView(LoginRequiredMixin, UpdateView):
+class BookUpdateForm(LoginRequiredMixin, UpdateView):
+    form_class = EditBookForm
     model = Book
-    template_name = "books/book_form.html"
-    fields = [
-        "title",
-        "subtitle",
-        "description",
-        "author",
-        "publisher",
-        "type",
-        "form",
-        "status",
-    ]
     action = "Edit"
+    template_name = "books/book_form.html"

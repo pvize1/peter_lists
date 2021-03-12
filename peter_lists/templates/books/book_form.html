@@ -5,7 +5,7 @@
 {% block content %}
   {% with action=view.action|default:"Add" %}
 
-    <h1>{{ action }} Book</h1>
+    <h2 class="display-2">{{ action }} Book</h2>
     <form action="." class="crispy form-horizontal" method="post">
       {% crispy form form.helper %}
     </form>
