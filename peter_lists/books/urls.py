@@ -4,10 +4,11 @@ from . import views
 app_name = "books"
 urlpatterns = [
     path(route="", view=views.BookListView.as_view(), name="list"),
+    path(route="<type_id>/", view=views.BookListView.as_view(), name="type_list"),
     path(route="authors/", view=views.AuthorListView.as_view(), name="author_list"),
-    path(route="author/books/<author>", view=views.AuthorBookListView.as_view(), name="author_book_list"),
+    path(route="author/books/<author>/", view=views.AuthorBookListView.as_view(), name="author_book_list"),
     path(route="publishers/", view=views.PublisherListView.as_view(), name="publishers_list"),
-    path(route="publisher/books/<publisher>", view=views.PublisherBookListView.as_view(), name="publisher_book_list"),
+    path(route="publisher/books/<publisher>/", view=views.PublisherBookListView.as_view(), name="publisher_book_list"),
     path(route="add/", view=views.BookCreateForm.as_view(), name="add"),
     path(route="<slug:slug>/update/", view=views.BookUpdateForm.as_view(), name="update"),
     path(route="<slug:slug>/", view=views.BookDetailView.as_view(), name="detail"),

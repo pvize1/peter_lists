@@ -44,6 +44,14 @@ class BookListView(ListView):
     paginate_by = 25
     template_name = "books/book_list.html"
 
+    def get_queryset(self):
+        if self.kwargs.get("type_id"):
+            qry = Book.objects.filter(type=self.kwargs["type_id"])
+        else:
+            qry = Book.objects.all()
+
+        return qry
+
 
 class BookDetailView(DetailView):
     model = Book
