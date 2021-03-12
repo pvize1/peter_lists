@@ -7,7 +7,6 @@
   {% if view.head %}
     <h3>{{ view.head }}</h3>
   {% endif %}
-  <br/>
 
   <div class="row">
     <div class="col-sm">
@@ -26,6 +25,8 @@
       <b>Status</b>
     </div>
   </div>
+
+  <hr/>
 
   {% for book in page_obj %}
     <div class="row">
@@ -53,27 +54,33 @@
   <hr/>
 
   <div class="row">
-    <div class="col-sm">
+    <div class="col-3">
       <p>Don't see a book listed here?</p>
     </div>
-    <div class="col-sm">
+    <div class="col-4">
       <p></p>
     </div>
-    <div class="col-sm">
-      <p></p>
+    <div class="col-5">
+      <p>Book Type</p>
     </div>
   </div>
   <div class="row">
-    <div class="col-sm">
+    <div class="col-3">
       <a class="btn btn-primary" href="{% url 'books:add' %}" role="button">Add Book</a>
     </div>
-    <div class="col-sm">
+    <div class="col-4">
       <a class="btn btn-primary" href="{% url 'books:list' %}" role="button">All Books</a>
       <a class="btn btn-primary" href="{% url 'books:author_list' %}" role="button">All Authors</a>
       <a class="btn btn-primary" href="{% url 'books:publishers_list' %}" role="button">All Publishers</a>
     </div>
-    <div class="col-sm">
-      <p></p>
+    <div class="col-5">
+      <div class="form-group">
+        <select class="form-control" id="book_type" name="book_type">
+          {% for type in view.book_types %}
+            <option value="{{ type.id }}">{{ type }}</option>
+          {% endfor %}
+        </select>
+      </div>
     </div>
   </div>
 

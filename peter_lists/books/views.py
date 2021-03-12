@@ -1,7 +1,7 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from django.shortcuts import get_object_or_404
-from .models import Book, Author, Publisher
+from .models import Book, Author, Publisher, BookType
 from .forms import EditBookForm
 
 
@@ -41,6 +41,7 @@ class PublisherBookListView(ListView):
 
 class BookListView(ListView):
     model = Book
+    book_types = BookType.objects.all().order_by('type')
     paginate_by = 25
     template_name = "books/book_list.html"
 
@@ -49,7 +50,6 @@ class BookListView(ListView):
             qry = Book.objects.filter(type=self.kwargs["type_id"])
         else:
             qry = Book.objects.all()
-
         return qry
 
 
