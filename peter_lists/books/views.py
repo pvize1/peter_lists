@@ -39,18 +39,27 @@ class PublisherBookListView(ListView):
         return Book.objects.filter(publisher=self.publisher)
 
 
-class BookListView(ListView):
-    model = Book
-    book_types = BookType.objects.all().order_by('type')
+class BookTypeListView(ListView):
+    model = BookType
+    paginate_by = 25
+    template_name = "books/booktype_list.html"
+
+
+class BookTypeBookListView(ListView):
+    model = BookType
     paginate_by = 25
     template_name = "books/book_list.html"
 
     def get_queryset(self):
-        if self.kwargs.get("type_id"):
-            qry = Book.objects.filter(type=self.kwargs["type_id"])
-        else:
-            qry = Book.objects.all()
-        return qry
+        self.booktype = get_object_or_404(BookType, id=self.kwargs["type_id"])
+        self.head = f"For Type = {self.booktype.type}"
+        return Book.objects.filter(type=self.booktype.id)
+
+
+class BookListView(ListView):
+    model = Book
+    paginate_by = 25
+    template_name = "books/book_list.html"
 
 
 class BookDetailView(DetailView):

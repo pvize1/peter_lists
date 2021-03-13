@@ -6,6 +6,7 @@
   <h2 class="display-2">Book List</h2>
   {% if view.head %}
     <h3>{{ view.head }}</h3>
+    <br/>
   {% endif %}
 
   <div class="row">
@@ -57,31 +58,23 @@
     <div class="col-3">
       <p>Don't see a book listed here?</p>
     </div>
-    <div class="col-4">
+    <div class="col-6">
       <p></p>
-    </div>
-    <div class="col-5">
-      <p>Book Type</p>
     </div>
   </div>
   <div class="row">
     <div class="col-3">
       <a class="btn btn-primary" href="{% url 'books:add' %}" role="button">Add Book</a>
     </div>
-    <div class="col-4">
+    <div class="col-6">
       <a class="btn btn-primary" href="{% url 'books:list' %}" role="button">All Books</a>
       <a class="btn btn-primary" href="{% url 'books:author_list' %}" role="button">All Authors</a>
       <a class="btn btn-primary" href="{% url 'books:publishers_list' %}" role="button">All Publishers</a>
-    </div>
-    <div class="col-5">
-      <div class="form-group">
-        <select class="form-control" id="book_type" name="book_type">
-          {% for type in view.book_types %}
-            <option value="{{ type.id }}">{{ type }}</option>
-          {% endfor %}
-        </select>
-      </div>
+      <a class="btn btn-primary" href="{% url 'books:booktype_list' %}" role="button">All Book Types</a>
     </div>
   </div>
+
+  <p></p>
+  <br/>
 
 {% endblock content %}

@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}Book Type List{% endblock title %}
+
+{% block content %}
+
+  <h2 class="display-2">List of Book Types</h2>
+  <br/>
+
+  <div class="row">
+    <div class="col-sm">
+      <b>Book Type</b>
+    </div>
+  </div>
+  {% for type in page_obj %}
+    <div class="row">
+      <div class="col-sm">
+        <a href="{% url 'books:booktype_book_list' type.id %}">{{ type.type }}</a>
+      </div>
+    </div>
+  {% endfor %}
+
+  <br/>
+
+  {% include "pagination.html" with page_obj=page_obj %}
+
+  <br/>
+  <hr/>
+
+  <br/>
+  <p>Don't see an book type here?</p>
+  <p>
+    <a class="btn btn-primary" href="{% url 'books:add' %}" role="button">Add a Book Type</a>
+  </p>
+
+  <p></p>
+  <br/>
+
+{% endblock content %}

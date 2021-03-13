@@ -28,8 +28,14 @@ class Author(TimeStampedModel):
 class BookType(TimeStampedModel):
     type = models.CharField("Book Type", max_length=25)
 
+    class Meta:
+        ordering = ["type"]
+
     def __str__(self):
         return self.type
+
+    def get_absolute_url(self):
+        return reverse("books:booktype_list")
 
 
 class Publisher(TimeStampedModel):
