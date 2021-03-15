@@ -1,5 +1,6 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import ListView, DetailView, CreateView, UpdateView
+from django.db.models import Count
 from django.shortcuts import get_object_or_404
 from .models import Book, Author, Publisher, BookType
 from .forms import EditBookForm
@@ -41,7 +42,12 @@ class PublisherBookListView(ListView):
 
 class BookTypeListView(ListView):
     model = BookType
-    paginate_by = 25
+    result = (
+        Book.objects.values("type", "type__type")
+        .order_by("type__type")
+        .annotate(count=Count("type__type"))
+        .order_by("-count")[:10]
+    )
     template_name = "books/booktype_list.html"
 
 

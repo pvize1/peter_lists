@@ -6,22 +6,41 @@
   <h2 class="display-2">List of Book Types</h2>
   <br/>
 
+  <h3>Count by Book Type</h3>
+  <div class="row">
+    <div class="col-sm">
+      <b>Book Type</b>
+    </div>
+    <div class="col-sm">
+      <b>Count</b>
+    </div>
+  </div>
+  {% for row in view.result %}
+    <div class="row">
+      <div class="col-sm">
+        <a href="{% url 'books:booktype_book_list' row.type %}">{{ row.type__type }}</a>
+      </div>
+      <div class="col-sm">
+        <p>{{ row.count }}</p>
+      </div>
+    </div>
+  {% endfor %}
+
+  </br>
+
+  <h3>Book Type (name order)</h3>
   <div class="row">
     <div class="col-sm">
       <b>Book Type</b>
     </div>
   </div>
-  {% for type in page_obj %}
+  {% for type in booktype_list %}
     <div class="row">
       <div class="col-sm">
         <a href="{% url 'books:booktype_book_list' type.id %}">{{ type.type }}</a>
       </div>
     </div>
   {% endfor %}
-
-  <br/>
-
-  {% include "pagination.html" with page_obj=page_obj %}
 
   <br/>
   <hr/>
