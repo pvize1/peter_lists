@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+
+  <h1 class="display-4 text-center">Projects Homepage</h1>
+
+  <h2>First {{ view.count }} books (ordered by author desc)</h2>
+  {% for obj in view.data %}
+    <p>{{ obj.id }} {{ obj.title }} {{ obj.author }}</p>
+  {% endfor %}
+
+  <h2>Top 10 Count by Author</h2>
+  {% for author in view.result %}
+    <p>{{ author.author__name }} {{ author.count }}</p>
+  {% endfor %}
+
+  <h2>Cookery Books (type=3)</h2>
+  {% for book in book_list %}
+    <p>{{ book.id }} {{ book.title }} {{ book.type }}</p>
+  {% endfor %}
+
+{% endblock content %}

@@ -67,14 +67,14 @@ class BookDetailView(DetailView):
     template_name = "books/book_detail.html"
 
 
-class BookCreateForm(LoginRequiredMixin, CreateView):
+class BookCreateView(LoginRequiredMixin, CreateView):
     form_class = EditBookForm
     model = Book
     action = "Add"
     template_name = "books/book_form.html"
 
 
-class BookUpdateForm(LoginRequiredMixin, UpdateView):
+class BookUpdateView(LoginRequiredMixin, UpdateView):
     form_class = EditBookForm
     model = Book
     action = "Edit"
