@@ -1,19 +1,25 @@
 {% extends "base.html" %}
 {% block content %}
 
-  <h1 class="display-4 text-center">Projects Homepage</h1>
+  <h2 class="display-4 text-center">Projects Test Page</h2>
 
-  <h2>First {{ view.count }} books (ordered by author desc)</h2>
+  <h3>First {{ view.count }} books (ordered by author desc)</h3>
   {% for obj in view.data %}
     <p>{{ obj.id }} {{ obj.title }} {{ obj.author }}</p>
   {% endfor %}
 
-  <h2>Top 10 Count by Author</h2>
+  <h3>Top 10 Count by Author</h3>
   {% for author in view.result %}
-    <p>{{ author.author__name }} {{ author.count }}</p>
+    <p>{{ author.author__name }}, count={{ author.count }}
+      {% if forloop.first or forloop.last %}
+        <span>, counter={{ forloop.counter }}, counter0={{ forloop.counter0 }},
+      revcounter={{ forloop.revcounter }}, revcounter0={{ forloop.revcounter0 }},
+      first={{ forloop.first }}, last={{ forloop.last }}</span>
+      {% endif %}
+    </p>
   {% endfor %}
 
-  <h2>Cookery Books (type=3)</h2>
+  <h3>Cookery Books (type=3)</h3>
   {% for book in book_list %}
     <p>{{ book.id }} {{ book.title }} {{ book.type }}</p>
   {% endfor %}

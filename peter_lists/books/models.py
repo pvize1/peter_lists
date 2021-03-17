@@ -57,6 +57,10 @@ class Publisher(TimeStampedModel):
         return super().save(*args, **kwargs)
 
 
+class BookManager(models.Manager):
+    def get_queryset(self):
+        return super(BookManager, self).get_queryset().filter(type=3)
+
 class Book(TimeStampedModel):
     class StatusChoices(models.TextChoices):
         COMPLETED = "RD", _("Completed")
@@ -111,6 +115,9 @@ class Book(TimeStampedModel):
             "title",
             "subtitle",
         ]
+
+    books = models.Manager()
+    cook_books = BookManager()
 
     def __str__(self):
         return self.title

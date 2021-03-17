@@ -65,7 +65,7 @@ class SimpleTest(TestCase):
         response = self.client.post(url, form_data)
         assert response.status_code == 302
 
-        book = Book.objects.get(title="Good Book")
+        book = Book.books.get(title="Good Book")
         assert book.subtitle == "Next line"
         assert book.description == "A really good book"
         assert book.creator == user

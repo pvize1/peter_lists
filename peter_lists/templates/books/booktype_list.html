@@ -15,6 +15,7 @@
       <b>Count</b>
     </div>
   </div>
+  <hr/>
   {% for row in view.result %}
     <div class="row">
       <div class="col-sm">
@@ -33,11 +34,18 @@
     <div class="col-sm">
       <b>Book Type</b>
     </div>
+    <div class="col-sm">
+      <b>Type Id</b>
+    </div>
   </div>
+  <hr/>
   {% for type in booktype_list %}
     <div class="row">
       <div class="col-sm">
         <a href="{% url 'books:booktype_book_list' type.id %}">{{ type.type }}</a>
+      </div>
+      <div class="col-sm">
+        <p>{{ type.id }}</p>
       </div>
     </div>
   {% endfor %}

@@ -20,7 +20,7 @@ class AuthorBookListView(ListView):
     def get_queryset(self):
         self.author = get_object_or_404(Author, name=self.kwargs["author"])
         self.head = f"For Author = {self.author}"
-        return Book.objects.filter(author=self.author)
+        return Book.books.filter(author=self.author)
 
 
 class PublisherListView(ListView):
@@ -37,13 +37,13 @@ class PublisherBookListView(ListView):
     def get_queryset(self):
         self.publisher = get_object_or_404(Publisher, name=self.kwargs["publisher"])
         self.head = f"For Publisher = {self.publisher}"
-        return Book.objects.filter(publisher=self.publisher)
+        return Book.books.filter(publisher=self.publisher)
 
 
 class BookTypeListView(ListView):
     model = BookType
     result = (
-        Book.objects.values("type", "type__type")
+        Book.books.values("type", "type__type")
         .order_by("type__type")
         .annotate(count=Count("type__type"))
         .order_by("-count")[:10]

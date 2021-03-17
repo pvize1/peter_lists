@@ -14,9 +14,9 @@ def ProjAdminView(request):
 
 class ProjTestView(ListView):
     model = Book
-    data = Book.objects.all().order_by("-author")[:2]
+    data = Book.books.all().order_by("-author")[:2]
     result = (
-        Book.objects.values("author__name")
+        Book.books.values("author__name")
         .order_by("author__name")
         .annotate(count=Count("author__name"))
         .order_by("-count")[:10]
@@ -25,4 +25,4 @@ class ProjTestView(ListView):
 
     def get_queryset(self):
         # assert False
-        return Book.objects.filter(type=3)
+        return Book.cook_books.all()
