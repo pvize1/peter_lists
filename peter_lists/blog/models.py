@@ -1,5 +1,6 @@
 from django.db import models
 from model_utils.models import TimeStampedModel
+from django.urls import reverse
 
 
 # Create your models here.
@@ -14,3 +15,6 @@ class Blog(TimeStampedModel):
 
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return reverse("blog:list")
