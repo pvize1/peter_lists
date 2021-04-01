@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block title %}{{ view.action }} Blog Entry{% endblock title %}
+
+{% block content %}
+  {% with action=view.action|default:"Add" %}
+
+    <h2 class="display-2">{{ action }} Blog Entry</h2>
+    <form action="." class="crispy form-horizontal" method="post">
+      {% crispy form form.helper %}
+    </form>
+
+  {% endwith %}
+{% endblock content %}
+
+
+

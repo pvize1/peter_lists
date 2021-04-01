@@ -7,7 +7,7 @@
   <br/>
 
   {% for blog in page_obj %}
-    <h2>{{ blog.title }}</h2>
+    <h2><a href="{% url 'blog:update' blog.id %}">{{ blog.title }}</a></h2>
     <p>{{ blog.description }}</p>
     <p><i>{{ blog.tag }}</i></p>
     <p>{{ blog.date }}</p>
@@ -21,6 +21,6 @@
 
   <br/>
   <p>Want to add a new blog entry?</p>
-  <p><a class="btn btn-primary" href="{% url 'books:add' %}" role="button">Add Blog entry</a></p>
+  <p><a class="btn btn-primary" href="{% url 'blog:add' %}" role="button">Add Blog entry</a></p>
 
 {% endblock content %}
