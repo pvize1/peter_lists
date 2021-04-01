@@ -1,6 +1,8 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views.generic import ListView, CreateView, UpdateView
 from django.shortcuts import render
-from django.views.generic import ListView
 from .models import Blog
+from .forms import EditBlogForm
 
 
 # Create your views here.
@@ -13,3 +15,17 @@ class BlogListView(ListView):
     model = Blog
     paginate_by = 3
     template_name = "blog/blog_list.html"
+
+
+class BlogCreateView(LoginRequiredMixin, CreateView):
+    form_class = EditBlogForm
+    model = Blog
+    action = "Add"
+    template_name = "blog/blog_form.html"
+
+
+class BlogUpdateView(LoginRequiredMixin, UpdateView):
+    form_class = EditBlogForm
+    model = Blog
+    action = "Edit"
+    template_name = "blog/blog_form.html"
