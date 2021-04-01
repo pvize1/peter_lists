@@ -59,7 +59,7 @@ class BookTypeBookListView(ListView):
     def get_queryset(self):
         self.booktype = get_object_or_404(BookType, id=self.kwargs["type_id"])
         self.head = f"For Type = {self.booktype.type}"
-        return Book.objects.filter(type=self.booktype.id)
+        return Book.books.filter(type=self.booktype.id)
 
 
 class BookListView(ListView):
