@@ -11,7 +11,7 @@ class Blog(TimeStampedModel):
     tag = models.CharField("Tag", max_length=100, blank=True, default="none, ")
 
     class Meta:
-        ordering = ["-date"]
+        ordering = ["-date", "title"]
 
     def __str__(self):
         return self.title
