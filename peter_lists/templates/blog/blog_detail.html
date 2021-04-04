@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}Blog Detail{% endblock title %}
+
+{% block content %}
+
+  <h2 class="display-2">Blog : {{ blog.title }}</h2>
+  <br/>
+
+  <p>{{ blog.description }}</p>
+  <p>{{ blog.tag }}</p>
+
+  <br/>
+  <hr/>
+
+  <br/>
+  <a class="btn btn-primary" href="{% url 'blog:list' %}" role="button">Back</a>
+  <a class="btn btn-primary" href="{% url 'blog:update' blog.id %}" role="button">Edit</a>
+  <a class="btn btn-primary" href="{% url 'blog:delete' blog.id %}" role="button">Delete</a>
+
+{% endblock content %}
