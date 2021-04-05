@@ -6,7 +6,6 @@ from django.urls import reverse
 from .factories import UserFactory
 from .factories import BookFactory, AuthorFactory, PublisherFactory, BookTypeFactory
 from ..models import Book
-from ..views import BookListView, BookDetailView
 
 pytestmark = pytest.mark.django_db
 

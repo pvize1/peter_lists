@@ -1,7 +1,6 @@
 import pytest
 
 from django.template.defaultfilters import slugify
-from .. import views
 
 from peter_lists.books.tests.factories import (
     BookFactory,
