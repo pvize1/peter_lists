@@ -35,9 +35,9 @@ class BookTypeListView(ListView):
     model = BookType
     result = (
         Book.books.values("type", "type__type")
-        .order_by("type__type")
-        .annotate(count=Count("type__type"))
-        .order_by("-count")[:10]
+            .order_by("type__type")
+            .annotate(count=Count("type__type"))
+            .order_by("-count")[:10]
     )
     template_name = "books/booktype_list.html"
 
@@ -47,7 +47,12 @@ class BookTypeBookListView(ListView):
     paginate_by = 25
     template_name = "books/book_list.html"
 
-    def get_queryset(self):
-        self.booktype = get_object_or_404(BookType, id=self.kwargs["type_id"])
-        self.head = f"For Type = {self.booktype.type}"
-        return Book.books.filter(type=self.booktype.id)
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        context = super().get_context_data(**kwargs)
+
+        # Add in other data
+        book_type = get_object_or_404(BookType, id=self.kwargs["type_id"])
+        context['page_obj'] = Book.books.filter(type=book_type.id)
+        context['head'] = f"For Type = {book_type.type}"
+        return context

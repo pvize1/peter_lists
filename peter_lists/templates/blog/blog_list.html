@@ -8,7 +8,6 @@
 
   {% for blog in page_obj %}
     <h2><a href="{% url 'blog:detail' blog.id %}">{{ blog.title }}</a></h2>
-    <p>{{ blog.description }}</p>
     <p><i>{{ blog.tag }}</i></p>
     <p>{{ blog.date }}</p>
     <br/>

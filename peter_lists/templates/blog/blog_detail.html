@@ -3,11 +3,14 @@
 
 {% block content %}
 
-  <h2 class="display-2">Blog : {{ blog.title }}</h2>
+  <h2 class="display-2">Blog : {{ blog.id }}</h2>
   <br/>
 
-  <p>{{ blog.description }}</p>
-  <p>{{ blog.tag }}</p>
+    <h2>{{ blog.title }}</h2>
+    <p>{{ blog.description|linebreaksbr }}</p>
+    <p><i>{{ blog.tag }}</i></p>
+    <p>{{ blog.date }}</p>
+    <br/>
 
   <br/>
   <hr/>
