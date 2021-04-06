@@ -1,8 +1,6 @@
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import ListView, DetailView, CreateView, UpdateView
+from django.views.generic import ListView
 from django.shortcuts import get_object_or_404
 from peter_lists.books.models import Author, Book
-
 
 
 class AuthorListView(ListView):
@@ -16,7 +14,12 @@ class AuthorBookListView(ListView):
     paginate_by = 25
     template_name = "books/book_list.html"
 
-    def get_queryset(self):
-        self.author = get_object_or_404(Author, name=self.kwargs["author"])
-        self.head = f"For Author = {self.author}"
-        return Book.books.filter(author=self.author)
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        context = super().get_context_data(**kwargs)
+
+        # Add in extra data
+        author = get_object_or_404(Author, name=self.kwargs["author"])
+        context['page_obj'] = Book.books.filter(author=author)
+        context['head'] = f"For Author = {author}"
+        return context

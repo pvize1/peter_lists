@@ -51,7 +51,7 @@ class BookTypeBookListView(ListView):
         # Call the base implementation first to get a context
         context = super().get_context_data(**kwargs)
 
-        # Add in other data
+        # Add in extra data
         book_type = get_object_or_404(BookType, id=self.kwargs["type_id"])
         context['page_obj'] = Book.books.filter(type=book_type.id)
         context['head'] = f"For Type = {book_type.type}"
