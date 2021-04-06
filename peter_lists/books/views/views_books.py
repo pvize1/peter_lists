@@ -48,13 +48,14 @@ class BookTypeBookListView(ListView):
     paginate_by = 25
     template_name = "books/book_list.html"
 
+    def get_queryset(self):
+        book_type = get_object_or_404(BookType, id=self.kwargs["type_id"])
+        return Book.books.filter(type=book_type.id)
+
     def get_context_data(self, **kwargs):
         # Call the base implementation first to get a context
         context = super().get_context_data(**kwargs)
-
         # Add in extra data
         book_type = get_object_or_404(BookType, id=self.kwargs["type_id"])
-        p = Paginator(Book.books.filter(type=book_type.id), 25)
-        context['page_obj'] = p.page(1)
         context['head'] = f"For Type = {book_type.type}"
         return context
