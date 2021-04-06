@@ -1,3 +1,4 @@
+from django.core.paginator import Paginator
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from django.db.models import Count
@@ -53,6 +54,7 @@ class BookTypeBookListView(ListView):
 
         # Add in extra data
         book_type = get_object_or_404(BookType, id=self.kwargs["type_id"])
-        context['page_obj'] = Book.books.filter(type=book_type.id)
+        p = Paginator(Book.books.filter(type=book_type.id), 25)
+        context['page_obj'] = p.page(1)
         context['head'] = f"For Type = {book_type.type}"
         return context

@@ -1,3 +1,4 @@
+from django.core.paginator import Paginator
 from django.views.generic import ListView
 from django.shortcuts import get_object_or_404
 from peter_lists.books.models import Publisher, Book
@@ -20,6 +21,7 @@ class PublisherBookListView(ListView):
 
         # Add in extra data
         publisher = get_object_or_404(Publisher, name=self.kwargs["publisher"])
-        context['page_obj'] = Book.books.filter(publisher=publisher)
+        p = Paginator(Book.books.filter(publisher=publisher), 25)
+        context['page_obj'] = p.page(1)
         context['head'] = f"For Publisher = {publisher}"
         return context
