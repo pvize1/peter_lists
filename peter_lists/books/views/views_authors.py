@@ -23,5 +23,6 @@ class AuthorBookListView(ListView):
         # Call the base implementation first to get a context
         context = super().get_context_data(**kwargs)
         # Add in extra data
+        author = get_object_or_404(Author, name=self.kwargs["author"])
         context['head'] = f"For Author = {author}"
         return context
