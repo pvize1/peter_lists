@@ -78,11 +78,13 @@ LOCAL_APPS = [
     # Your stuff: custom apps go here
     "peter_lists.blog.apps.BlogConfig",
     "peter_lists.books.apps.BooksConfig",
+    "peter_lists.images.apps.ImagesConfig",
     "peter_lists.lego.apps.LegoConfig",
     "peter_lists.origami.apps.OrigamiConfig",
     "peter_lists.passwd.apps.PasswdConfig",
     "peter_lists.projects.apps.ProjectsConfig",
     "peter_lists.recipes.apps.RecipesConfig",
+    "peter_lists.todo.apps.TodoConfig",
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
