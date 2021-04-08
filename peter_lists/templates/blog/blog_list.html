@@ -3,11 +3,11 @@
 
 {% block content %}
 
-  <h2 class="display-2">Total Blog List</h2>
+  <h4 class="display-4">Total Blog List</h4>
   <br/>
 
   {% for blog in page_obj %}
-    <h2><a href="{% url 'blog:detail' blog.id %}">{{ blog.title }}</a></h2>
+    <h5><a href="{% url 'blog:detail' blog.id %}">{{ blog.title }}</a></h5>
     <p><i>{{ blog.tag }}</i></p>
     <p>{{ blog.date }}</p>
     <br/>

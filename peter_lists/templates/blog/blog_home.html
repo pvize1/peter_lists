@@ -3,15 +3,11 @@
 
 {% block content %}
 
-
-  <h2 class="display-2">My Diary Blog</h2>
-  <h3>Latest 3 blog entries</h3>
+  <h4 class="display-4">Latest 3 blog entries</h4>
   <br/>
 
   {% for blog in blogs %}
-    <h2>{{ blog.title }}</h2>
-    <p><i>{{ blog.tag }}</i></p>
-    <p>{{ blog.date }}</p>
+    <h5><a href="{% url 'blog:detail' blog.id %}">{{ blog.title }}</a></h5>
     <br/>
   {% endfor %}
 

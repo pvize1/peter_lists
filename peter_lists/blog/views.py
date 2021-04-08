@@ -8,7 +8,7 @@ from .forms import EditBlogForm
 
 # Create your views here.
 def BlogHome(request):
-    blogs = Blog.objects.order_by("-date")[:3]
+    blogs = Blog.objects.order_by("-modified")[:3]
     return render(request, "blog/blog_home.html", {'blogs': blogs})
 
 
