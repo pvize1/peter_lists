@@ -4,6 +4,9 @@
 {% block content %}
 
   <h4 class="display-4">Latest 3 blog entries</h4>
+
+  <p><a class="btn btn-primary" href="{% url 'blog:list' %}" role="button">List of all blog entries</a>
+    <a class="btn btn-primary" href="{% url 'blog:add' %}" role="button">Add Blog entry</a></p>
   <br/>
 
   {% for blog in blogs %}
@@ -11,10 +14,19 @@
     <br/>
   {% endfor %}
 
-  <br/>
   <hr/>
-  <br/>
-  <p><a class="btn btn-primary" href="{% url 'blog:list' %}" role="button">List of all blog entries</a>
-    <span><a class="btn btn-primary" href="{% url 'blog:add' %}" role="button">Add Blog entry</a></span></p>
+  <h4 class="display-4">Top 10 tags</h4>
+  <p></p>
+
+  {% for tag in tags %}
+    <div class="row">
+      <div class="col-sm">
+        <h5>{{ tag.tag }}</h5>
+      </div>
+      <div class="col-sm">
+        <p>{{ tag.count }}</p>
+      </div>
+    </div>
+  {% endfor %}
 
 {% endblock content %}

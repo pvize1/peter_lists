@@ -13,6 +13,8 @@ class Blog(TimeStampedModel):
     class Meta:
         ordering = ["-date", "title"]
 
+    blog = models.Manager()
+
     def __str__(self):
         return self.title
 

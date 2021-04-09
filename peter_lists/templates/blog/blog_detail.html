@@ -3,21 +3,17 @@
 
 {% block content %}
 
-  <h4 class="display-4">Blog : {{ blog.id }}</h4>
+  <h4 class="display-4">Blog #{{ blog.id }}</h4>
+
+  <p><a class="btn btn-primary" href="{% url 'blog:list' %}" role="button">Back</a>
+    <a class="btn btn-primary" href="{% url 'blog:update' blog.id %}" role="button">Edit</a>
+    <a class="btn btn-primary" href="{% url 'blog:delete' blog.id %}" role="button">Delete</a></p>
   <br/>
 
-    <h5>{{ blog.title }}</h5>
-    <p>{{ blog.description|linebreaksbr }}</p>
-    <p><i>{{ blog.tag }}</i></p>
-    <p>{{ blog.date }}</p>
-    <br/>
-
+  <h5>{{ blog.title }}</h5>
+  <p>{{ blog.description|linebreaksbr }}</p>
+  <p><i>{{ blog.tag }}</i></p>
+  <p>{{ blog.date }}</p>
   <br/>
-  <hr/>
-
-  <br/>
-  <a class="btn btn-primary" href="{% url 'blog:list' %}" role="button">Back</a>
-  <a class="btn btn-primary" href="{% url 'blog:update' blog.id %}" role="button">Edit</a>
-  <a class="btn btn-primary" href="{% url 'blog:delete' blog.id %}" role="button">Delete</a>
 
 {% endblock content %}

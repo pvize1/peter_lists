@@ -4,6 +4,8 @@
 {% block content %}
 
   <h4 class="display-4">Total Blog List</h4>
+
+  <p><a class="btn btn-primary" href="{% url 'blog:add' %}" role="button">Add Blog entry</a></p>
   <br/>
 
   {% for blog in page_obj %}
@@ -17,9 +19,5 @@
   <hr/>
 
   {% include "pagination.html" with page_obj=page_obj %}
-
-  <br/>
-  <p>Want to add a new blog entry?</p>
-  <p><a class="btn btn-primary" href="{% url 'blog:add' %}" role="button">Add Blog entry</a></p>
 
 {% endblock content %}
