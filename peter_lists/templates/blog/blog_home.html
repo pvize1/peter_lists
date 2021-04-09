@@ -18,13 +18,13 @@
   <h4 class="display-4">Top 10 tags</h4>
   <p></p>
 
-  {% for tag in tags %}
+  {% for key, value in tags.items %}
     <div class="row">
       <div class="col-sm">
-        <h5>{{ tag.tag }}</h5>
+        <h5>{{ key }}</h5>
       </div>
       <div class="col-sm">
-        <p>{{ tag.count }}</p>
+        <p>{{ value }}</p>
       </div>
     </div>
   {% endfor %}

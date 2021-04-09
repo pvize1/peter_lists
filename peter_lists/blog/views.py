@@ -9,12 +9,12 @@ from .forms import EditBlogForm
 
 # Create your views here.
 def BlogHome(request):
+    raw_tags = dict()
     blogs = Blog.blog.order_by("-modified")[:3]
-    tags = (
-        Blog.blog.values("tag")
-            .annotate(count=Count("tag"))
-            .order_by("-count")[:10]
-    )
+    for record in Blog.blog.all():
+        for t in record.tag.split(","):
+            raw_tags[t.strip()] = raw_tags.get(t.strip(), 0) + 1
+    tags = {k: raw_tags[k] for k in sorted(raw_tags, key=raw_tags.get, reverse=True)}
     return render(request, "blog/blog_home.html", {'blogs': blogs, 'tags': tags})
 
 
