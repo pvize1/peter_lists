@@ -21,7 +21,7 @@
   {% for key, value in tags.items %}
     <div class="row">
       <div class="col-sm">
-        <h5>{{ key }}</h5>
+        <h5><a href="{% url 'blog:tag_list' key %}">{{ key }}</a></h5>
       </div>
       <div class="col-sm">
         <p>{{ value }}</p>
