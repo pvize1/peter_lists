@@ -15,8 +15,10 @@
   {% endfor %}
 
   <hr/>
-  <h4 class="display-4">Top 10 tags</h4>
-  <p></p>
+  <h4 class="display-4">Top 5 tags</h4>
+
+  <p><a class="btn btn-primary" href="{% url 'blog:all_tags' %}" role="button">List of all tags</a></p>
+  <br/>
 
   {% for key, value in tags.items %}
     <div class="row">
