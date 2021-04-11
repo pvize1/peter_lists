@@ -14,4 +14,30 @@
 
   <hr/>
 
+  <h4 class="display-4">Latest 3 authors</h4>
+
+  <p><a class="btn btn-primary" href="{% url 'books:author_list' %}" role="button">List of all Authors</a>
+    <a class="btn btn-primary" href="{% url 'books:add' %}" role="button">Add Book</a></p>
+  <br/>
+
+  {% for author in authors %}
+    <h5><a href="{% url 'books:detail' author.id %}">{{ author.name }}</a></h5>
+    <br/>
+  {% endfor %}
+
+  <hr/>
+
+  <h4 class="display-4">Latest 3 publishers</h4>
+
+  <p><a class="btn btn-primary" href="{% url 'books:publishers_list' %}" role="button">List of all Publishers</a>
+    <a class="btn btn-primary" href="{% url 'books:add' %}" role="button">Add Book</a></p>
+  <br/>
+
+  {% for publisher in publishers %}
+    <h5><a href="{% url 'books:detail' publisher.id %}">{{ publisher.name }}</a></h5>
+    <br/>
+  {% endfor %}
+
+  <hr/>
+
 {% endblock content %}
