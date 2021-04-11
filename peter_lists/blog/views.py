@@ -8,19 +8,22 @@ from django.views.generic import (
 )
 from django.shortcuts import render
 from django.db.models import Count
+from django.db.models.functions import Trim, Lower
 from django.urls import reverse_lazy
 from .models import Blog
 from .forms import EditBlogForm
 
 
 def tag_count(topn=0):
-    raw_tags = Blog.blog.values("tag").annotate(count=Count("tag"))
+    # TODO Move to model manager
+    raw_tags = Blog.blog.order_by("tag").values("tag").annotate(count=Count("tag"), tag_new=Trim(Lower("tag")))
     count_tags = dict()
     for record in raw_tags:
-        for tag in record["tag"].split(","):
-            k = tag.strip().lower()
+        for tag in record["tag_new"].split(","):
+            k = tag.strip()
             if len(k) > 0:
                 count_tags[k] = count_tags.get(k, 0) + record["count"]
+    # TODO Sort by key after value, for common values
     if topn == 0:
         return {
             k: count_tags[k]
@@ -31,7 +34,6 @@ def tag_count(topn=0):
             k: count_tags[k]
             for k in sorted(count_tags, key=count_tags.get, reverse=True)[:topn]
         }
-
 
 # Create your views here.
 def BlogHome(request):
@@ -49,6 +51,7 @@ class BlogListView(ListView):
 def BlogAllTagsView(request):
     tag_sorted = tag_count()
     return render(request, "blog/blog_tags.html", {"tags": tag_sorted})
+    # TODO turn into ListView with paginate
 
 
 class BlogTagListView(ListView):
