@@ -19,7 +19,8 @@ def tag_count(topn=0):
     for record in raw_tags:
         for tag in record["tag"].split(","):
             k = tag.strip().lower()
-            count_tags[k] = count_tags.get(k, 0) + record["count"]
+            if len(k) > 0:
+                count_tags[k] = count_tags.get(k, 0) + record["count"]
     if topn == 0:
         return {
             k: count_tags[k]
