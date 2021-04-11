@@ -1,10 +1,17 @@
 {% extends "base.html" %}
 {% block content %}
 
-  <div class="container">
-    <div class="jumbotron">
-      <h2 class="text-center">Books Homepage</h2>
-    </div>
-  </div>
+  <h4 class="display-4">Latest 3 books</h4>
+
+  <p><a class="btn btn-primary" href="{% url 'books:list' %}" role="button">List of all Books</a>
+    <a class="btn btn-primary" href="{% url 'books:add' %}" role="button">Add Book</a></p>
+  <br/>
+
+  {% for book in books %}
+    <h5><a href="{% url 'books:detail' book.slug %}">{{ book.title }}</a></h5>
+    <br/>
+  {% endfor %}
+
+  <hr/>
 
 {% endblock content %}

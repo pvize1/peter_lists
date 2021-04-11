@@ -1,10 +1,27 @@
-from django.core.paginator import Paginator
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import ListView, DetailView, CreateView, UpdateView
+from django.views.generic import (
+    ListView,
+    DetailView,
+    CreateView,
+    UpdateView,
+    DeleteView,
+)
 from django.db.models import Count
-from django.shortcuts import get_object_or_404
-from peter_lists.books.models import Book, BookType
+from django.shortcuts import get_object_or_404, render
+from django.urls import reverse_lazy
+from peter_lists.books.models import Book, BookType, Author, Publisher
 from peter_lists.books.forms import EditBookForm
+
+
+def BookHome(request):
+    books = Book.books.order_by("-modified")[:3]
+    authors = Author.objects.order_by("-modified")[:3]
+    publishers = Publisher.objects.order_by("-modified")[:3]
+    return render(
+        request,
+        "books/books_home.html",
+        {"books": books, "authors": authors, "publishers": publishers},
+    )
 
 
 class BookListView(ListView):
@@ -32,13 +49,18 @@ class BookUpdateView(LoginRequiredMixin, UpdateView):
     template_name = "books/book_form.html"
 
 
+class BookDeleteView(LoginRequiredMixin, DeleteView):
+    model = Book
+    success_url = reverse_lazy("books:list")
+
+
 class BookTypeListView(ListView):
     model = BookType
     result = (
         Book.books.values("type", "type__type")
-            .order_by("type__type")
-            .annotate(count=Count("type__type"))
-            .order_by("-count")[:10]
+        .order_by("type__type")
+        .annotate(count=Count("type__type"))
+        .order_by("-count")[:10]
     )
     template_name = "books/booktype_list.html"
 
@@ -57,5 +79,5 @@ class BookTypeBookListView(ListView):
         context = super().get_context_data(**kwargs)
         # Add in extra data
         book_type = get_object_or_404(BookType, id=self.kwargs["type_id"])
-        context['head'] = f"For Type = {book_type.type}"
+        context["head"] = f"For Type = {book_type.type}"
         return context
