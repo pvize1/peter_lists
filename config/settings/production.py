@@ -70,7 +70,7 @@ AWS_QUERYSTRING_AUTH = False
 _AWS_EXPIRY = 60 * 60 * 24 * 7
 #AWS_S3_SIGNATURE_VERSION = 's3v4'
 #S3_USE_SIGV4 = True
-AWS_S3_HOST = 's3.eu-west-2.amazonaws.com'
+AWS_S3_HOST = 's3-eu-west-2.amazonaws.com'
 # https://django-storages.readthedocs.io/en/latest/backends/amazon-S3.html#settings
 AWS_S3_OBJECT_PARAMETERS = {
     "CacheControl": f"max-age={_AWS_EXPIRY}, s-maxage={_AWS_EXPIRY}, must-revalidate"
