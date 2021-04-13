@@ -85,11 +85,13 @@ aws_s3_domain = f"{AWS_STORAGE_BUCKET_NAME}.eu-west-2.s3.amazonaws.com"
 # ------------------------
 STATICFILES_STORAGE = "peter_lists.utils.storages.StaticRootS3Boto3Storage"
 COLLECTFAST_STRATEGY = "collectfast.strategies.boto3.Boto3Strategy"
-STATIC_URL = f"https://{aws_s3_domain}/static/"
+#STATIC_URL = f"https://{aws_s3_domain}/static/"
+STATIC_URL = "https://peter-lists-001.eu-west-2.s3.amazonaws.com/static/"
+
 # MEDIA
 # ------------------------------------------------------------------------------
 DEFAULT_FILE_STORAGE = "peter_lists.utils.storages.MediaRootS3Boto3Storage"
-MEDIA_URL = f"https://{aws_s3_domain}/media/"
+MEDIA_URL = "https://peter-lists-001.eu-west-2.s3.amazonaws.com/media/"
 
 # TEMPLATES
 # ------------------------------------------------------------------------------
