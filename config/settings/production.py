@@ -68,9 +68,10 @@ AWS_STORAGE_BUCKET_NAME = env("DJANGO_AWS_STORAGE_BUCKET_NAME")
 AWS_QUERYSTRING_AUTH = False
 # DO NOT change these unless you know what you're doing.
 _AWS_EXPIRY = 60 * 60 * 24 * 7
-#AWS_S3_SIGNATURE_VERSION = 's3v4'
 
+AWS_S3_SIGNATURE_VERSION = 's3v4'
 S3_USE_SIGV4 = True
+AWS_DEFAULT_ACL = None
 AWS_S3_HOST = 's3.eu-west-2.amazonaws.com'
 
 # https://django-storages.readthedocs.io/en/latest/backends/amazon-S3.html#settings
