@@ -150,6 +150,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\peter_lists\images\models.py">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="\peter_lists\origami\models.py">
           <value>
             <Attribute>

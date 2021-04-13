@@ -6,6 +6,7 @@
   {% load static %}
   <div class="d-flex">
     <div class="w-25">
+      <p>{% static "images/blog.jpg" %}</p>
       <a class="nav-link" href="{% url 'blog:home' %}">
         <img class="rounded img-fluid" src="{% static "images/blog.jpg" %}" alt="Blog">
       </a>
@@ -21,5 +22,8 @@
       </a>
     </div>
   </div>
+
+  {% load staticfiles %}
+  <p>{% static "images/blog.jpg" %}</p>
 
 {% endblock content %}
