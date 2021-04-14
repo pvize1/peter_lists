@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Blog
+from .models import Blog, ImageList
 
 
 @admin.register(Blog)
@@ -9,3 +9,7 @@ class BlogAdmin(admin.ModelAdmin):
     date_hierarchy = "date"
     list_filter = ["tag"]
     search_fields = ["title", "tag"]
+
+@admin.register(ImageList)
+class ImageListAdmin(admin.ModelAdmin):
+    pass
