@@ -6,6 +6,7 @@ from ..images.models import Image
 
 # Create your models here.
 class ImageList(TimeStampedModel):
+    order = models.IntegerField("Ord", default=0)
     blogs = models.ForeignKey("Blog", on_delete=models.CASCADE)
     blog_image = models.ForeignKey("images.Image", on_delete=models.CASCADE)
 
