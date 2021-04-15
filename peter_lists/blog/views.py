@@ -1,4 +1,5 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.views.generic import (
     ListView,
     DetailView,
@@ -42,10 +43,11 @@ def BlogHome(request):
     return render(request, "blog/blog_home.html", {"blogs": blogs, "tags": tag_sorted})
 
 
-class BlogListView(ListView):
+class BlogListView(PermissionRequiredMixin, ListView):
     model = Blog
     paginate_by = 3
     template_name = "blog/blog_list.html"
+    permission_required = "Blog.can_view"
 
 
 def BlogAllTagsView(request):
@@ -54,18 +56,20 @@ def BlogAllTagsView(request):
     # TODO turn into ListView with paginate
 
 
-class BlogTagListView(ListView):
+class BlogTagListView(PermissionRequiredMixin, ListView):
     model = Blog
     paginate_by = 3
     template_name = "blog/blog_list.html"
+    permission_required = "Blog.can_view"
 
     def get_queryset(self):
         return Blog.blog.filter(tag__contains=self.kwargs["tag_name"])
 
 
-class BlogDetailView(DetailView):
+class BlogDetailView(PermissionRequiredMixin, DetailView):
     model = Blog
     template_name = "blog/blog_detail.html"
+    permission_required = "Blog.can_view"
 
 
 class BlogCreateView(LoginRequiredMixin, CreateView):
