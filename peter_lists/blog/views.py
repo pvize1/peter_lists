@@ -15,20 +15,24 @@ from .models import Blog
 from .forms import EditBlogForm
 
 
-def tag_count(topn=0):
+def tag_count(blog_user, topn=0):
     # TODO Move to model manager
     raw_tags = (
-        Blog.blog.order_by("tag")
+        Blog.blog.filter(user=blog_user)
+        .order_by("tag")
         .values("tag")
         .annotate(count=Count("tag"), tag_new=Trim(Lower("tag")))
     )
     count_tags = dict()
+
+    # TODO Split by tags with "," and those without
     for record in raw_tags:
         for tag in record["tag_new"].split(","):
             k = tag.strip()
             if len(k) > 0:
                 count_tags[k] = count_tags.get(k, 0) + record["count"]
-    # TODO Sort by key after value, for common values
+
+    # TODO Sort by value (desc) and then key (ascend) for common values
     if topn == 0:
         return {
             k: count_tags[k]
@@ -43,10 +47,15 @@ def tag_count(topn=0):
 
 # Create your views here.
 def BlogHome(request):
-    blogs = Blog.blog.filter(user=request.user).order_by("-modified")[:3]
-    blog_count = blogs.count()
-    tag_sorted = tag_count(topn=5)
-    return render(request, "blog/blog_home.html", {"blogs": blogs, "tags": tag_sorted, "blog_count": blog_count})
+    blog_all = Blog.blog.filter(user=request.user)
+    blogs = blog_all.order_by("-modified")[:3]
+    blog_count = blog_all.count()
+    tag_sorted = tag_count(request.user, topn=5)
+    return render(
+        request,
+        "blog/blog_home.html",
+        {"blogs": blogs, "tags": tag_sorted, "blog_count": blog_count},
+    )
 
 
 class BlogListView(PermissionRequiredMixin, ListView):
@@ -55,11 +64,14 @@ class BlogListView(PermissionRequiredMixin, ListView):
     template_name = "blog/blog_list.html"
     permission_required = "blog.view_blog"
 
+    def get_queryset(self):
+        return Blog.blog.filter(user=self.request.user)
+
 
 def BlogAllTagsView(request):
-    tag_sorted = tag_count()
-    return render(request, "blog/blog_tags.html", {"tags": tag_sorted})
     # TODO turn into ListView with paginate
+    tag_sorted = tag_count(request.user)
+    return render(request, "blog/blog_tags.html", {"tags": tag_sorted})
 
 
 class BlogTagListView(PermissionRequiredMixin, ListView):
@@ -69,7 +81,7 @@ class BlogTagListView(PermissionRequiredMixin, ListView):
     permission_required = "blog.view_blog"
 
     def get_queryset(self):
-        return Blog.blog.filter(tag__contains=self.kwargs["tag_name"])
+        return Blog.blog.filter(tag__contains=self.kwargs["tag_name"], user=self.request.user)
 
 
 class BlogDetailView(PermissionRequiredMixin, DetailView):

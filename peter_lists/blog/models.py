@@ -11,6 +11,9 @@ class ImageList(TimeStampedModel):
     blogs = models.ForeignKey("Blog", on_delete=models.CASCADE)
     blog_image = models.ForeignKey("images.Image", on_delete=models.CASCADE)
 
+    def __str__(self):
+        return self.blogs.title
+
 
 class Blog(TimeStampedModel):
     title = models.CharField("Title", max_length=250)
@@ -21,7 +24,7 @@ class Blog(TimeStampedModel):
         settings.AUTH_USER_MODEL,
         related_name="blog_created_by",
         on_delete=models.CASCADE,
-        default=0
+        default=0,
     )
     images = models.ManyToManyField(
         Image,
