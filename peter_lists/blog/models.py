@@ -1,6 +1,7 @@
 from django.db import models
 from model_utils.models import TimeStampedModel
 from django.urls import reverse
+from django.conf import settings
 from ..images.models import Image
 
 
@@ -16,6 +17,12 @@ class Blog(TimeStampedModel):
     description = models.TextField("Description", blank=True)
     date = models.DateTimeField("Date")
     tag = models.CharField("Tag", max_length=100, blank=True, default="none, ")
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        related_name="blog_created_by",
+        on_delete=models.CASCADE,
+        default=0
+    )
     images = models.ManyToManyField(
         Image,
         through=ImageList,

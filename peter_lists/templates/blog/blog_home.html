@@ -4,6 +4,7 @@
 {% block content %}
 
   <h4 class="display-4">Latest 3 blog entries</h4>
+  <p>(Of {{ blog_count }} total)</p>
 
   <p><a class="btn btn-primary" href="{% url 'blog:list' %}" role="button">List of all blog entries</a>
     <a class="btn btn-primary" href="{% url 'blog:add' %}" role="button">Add Blog entry</a></p>

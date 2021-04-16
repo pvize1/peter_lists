@@ -12,7 +12,7 @@ class Image(TimeStampedModel):
     description = models.TextField("Description", blank=True)
     user = models.ForeignKey(
         settings.AUTH_USER_MODEL,
-        related_name="images_created",
+        related_name="image_created_by",
         on_delete=models.CASCADE,
     )
 

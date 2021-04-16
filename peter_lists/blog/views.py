@@ -43,9 +43,10 @@ def tag_count(topn=0):
 
 # Create your views here.
 def BlogHome(request):
-    blogs = Blog.blog.order_by("-modified")[:3]
+    blogs = Blog.blog.filter(user=request.user).order_by("-modified")[:3]
+    blog_count = blogs.count()
     tag_sorted = tag_count(topn=5)
-    return render(request, "blog/blog_home.html", {"blogs": blogs, "tags": tag_sorted})
+    return render(request, "blog/blog_home.html", {"blogs": blogs, "tags": tag_sorted, "blog_count": blog_count})
 
 
 class BlogListView(PermissionRequiredMixin, ListView):
