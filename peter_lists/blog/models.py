@@ -24,7 +24,6 @@ class Blog(TimeStampedModel):
         settings.AUTH_USER_MODEL,
         related_name="blog_created_by",
         on_delete=models.CASCADE,
-        default=0,
     )
     images = models.ManyToManyField(
         Image,
